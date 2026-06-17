@@ -60,13 +60,13 @@ The following declares the primary identity of the web archive.
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `archive`                                           |                | Table        | ✓        |             |
-| ↪ `id`                                              | `archive`      | String       | ✓        | Stable machine-readable archive identifier consisting of 2–6 lowercase alphanumeric characters |
-| ↪ `name`                                            | `archive`      | Inline Table | ✓        | Archive naming inline table |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `en`               | `name`         | String       | ✕        | English-language archive name |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `alt`              | `name`         | String       | ✕        | Alternative or abbreviated archive name |
-| ↪ `established`                                     | `archive`      | String       | ✕        | Archive establishment year, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) year format (`YYYY`) |
-| ↪ `website`                                         | `archive`      | String       | ✓        | Canonical public archive website URL |
-| ↪ `email`                                           | `archive`      | String       | ✕        | Administrative or operational contact email address |
+| `↪ id`                                              | `archive`      | String       | ✓        | Stable machine-readable archive identifier consisting of 2–6 lowercase alphanumeric characters |
+| `↪ name`                                            | `archive`      | Inline Table | ✓        | Archive naming inline table |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ en`               | `name`         | String       | ✕        | English-language archive name |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ alt`              | `name`         | String       | ✕        | Alternative or abbreviated archive name |
+| `↪ established`                                     | `archive`      | String       | ✕        | Archive establishment year, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) year format (`YYYY`) |
+| `↪ website`                                         | `archive`      | String       | ✓        | Canonical public archive website URL |
+| `↪ email`                                           | `archive`      | String       | ✕        | Administrative or operational contact email address |
 
 #### Examples:
 
@@ -101,12 +101,12 @@ The following declares the institution responsible for operating or governing th
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `organisation`                                      | `archive`      | Table        | ✓        |             |
-| ↪ `name`                                            | `organisation` | Inline Table | ✓        | Organisation naming inline table |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `en`               | `name`         | String       | ✕        | English-language organisation name |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `alt`              | `name`         | String       | ✕        | Alternative or abbreviated organisation name |
-| ↪ `type`                                            | `organisation` | String       | ✓        | Institutional classification. Values **MAY** include: `national_archive`, `national_library`, `state_archive`, `state_library`, `university`, `research_institute`, `government`, `nonprofit`, `commercial`, `community` |
-| ↪ `location`                                        | `organisation` | Array        | ✕        | Jurisdiction identifiers using [ISO 3166-1](https://www.iso.org/standard/72482.html) or [ISO 3166-2](https://www.iso.org/standard/72483.html) codes. The property MAY contain multiple jurisdiction identifiers representing hierarchical or overlapping jurisdictions. |
-| ↪ `website`                                         | `organisation` | String       | ✕        | Canonical organisation website URL |
+| `↪ name`                                            | `organisation` | Inline Table | ✓        | Organisation naming inline table |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ en`               | `name`         | String       | ✕        | English-language organisation name |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ alt`              | `name`         | String       | ✕        | Alternative or abbreviated organisation name |
+| `↪ type`                                            | `organisation` | String       | ✓        | Institutional classification. Values **MAY** include: `national_archive`, `national_library`, `state_archive`, `state_library`, `university`, `research_institute`, `government`, `nonprofit`, `commercial`, `community` |
+| `↪ location`                                        | `organisation` | Array        | ✕        | Jurisdiction identifiers using [ISO 3166-1](https://www.iso.org/standard/72482.html) or [ISO 3166-2](https://www.iso.org/standard/72483.html) codes. The property MAY contain multiple jurisdiction identifiers representing hierarchical or overlapping jurisdictions. |
+| `↪ website`                                         | `organisation` | String       | ✕        | Canonical organisation website URL |
 
 #### Examples:
 
@@ -139,16 +139,16 @@ The following declares collection boundaries, crawl modalities, strategies and t
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `scope`                                             | `archive`      | Table        | ✓        |             |
-| ↪ `crawl`                                           | `scope`        | Array        | ✓        | Crawl modalities (harvesting methods) used by the archive. Values MAY include: `national_domain`, `regional_domain`, `bulk`, `selective`, `event`, `thematic`, `periodical` |
-| ↪ `authority`                                       | `scope`        | Inline Table | ✓        | Legal or institutional basis for web archive crawling |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `type`             | `authority`    | String       | ✓        | Authority model. Values **MAY** include: `legal_deposit`, `public_record`, `institutional`, `voluntary`, `research` |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `documentation`    | `authority`    | String       | ✕        | Reference describing the collection authority |
-| ↪ `coverage`                                        | `scope`        | String       | ✕        | Temporal coverage interval, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) date format (`YYYY-MM-DD`). Supports open-ended (`YYYY-MM-DD/..`) and bounded (`YYYY-MM-DD/YYYY-MM-DD`) intervals |
-| ↪ `domains`                                         | `scope`        | Array        | ✕        | Domain scope indicators including ccTLDs, gTLDs and geoTLDs |
-| ↪ `collections`                                     | `scope`        | Array        | ✕        | Enables collection-scoped resolution. When defined, API and replay URI templates MAY include the `{collection}` variable |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `id`               | `collections`  | String       | ✓        | Stable machine-readable collection identifier |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `name`             | `collections`  | String       | ✓        | Human-readable collection name |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `coverage`         | `collections`  | String       | ✕        | Collection-specific temporal coverage interval, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) date format (`YYYY-MM-DD`). Supports open-ended (`YYYY-MM-DD/..`) and bounded (`YYYY-MM-DD/YYYY-MM-DD`) intervals |
+| `↪ crawl`                                           | `scope`        | Array        | ✓        | Crawl modalities (harvesting methods) used by the archive. Values MAY include: `national_domain`, `regional_domain`, `bulk`, `selective`, `event`, `thematic`, `periodical` |
+| `↪ authority`                                       | `scope`        | Inline Table | ✓        | Legal or institutional basis for web archive crawling |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ type`             | `authority`    | String       | ✓        | Authority model. Values **MAY** include: `legal_deposit`, `public_record`, `institutional`, `voluntary`, `research` |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ documentation`    | `authority`    | String       | ✕        | Reference describing the collection authority |
+| `↪ coverage`                                        | `scope`        | String       | ✕        | Temporal coverage interval, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) date format (`YYYY-MM-DD`). Supports open-ended (`YYYY-MM-DD/..`) and bounded (`YYYY-MM-DD/YYYY-MM-DD`) intervals |
+| `↪ domains`                                         | `scope`        | Array        | ✕        | Domain scope indicators including ccTLDs, gTLDs and geoTLDs |
+| `↪ collections`                                     | `scope`        | Array        | ✕        | Enables collection-scoped resolution. When defined, API and replay URI templates MAY include the `{collection}` variable |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ id`               | `collections`  | String       | ✓        | Stable machine-readable collection identifier |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ name`             | `collections`  | String       | ✓        | Human-readable collection name |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ coverage`         | `collections`  | String       | ✕        | Collection-specific temporal coverage interval, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) date format (`YYYY-MM-DD`). Supports open-ended (`YYYY-MM-DD/..`) and bounded (`YYYY-MM-DD/YYYY-MM-DD`) intervals |
 
 #### Examples:
 
@@ -205,8 +205,8 @@ The following declares information relating to API documentation, access conditi
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `api`                                               |                | Table        | ✓        |             |
-| ↪ `documentation`                                   | `api`          | String       | ✕        | URL to API documentation or developer resources |
-| ↪ `rate_limit`                                      | `api`          | Boolean      | ✕        | Indicates whether rate limiting is enforced (`true`/`false`). Add comments for additional access restrictions or exceptions. |
+| `↪ documentation`                                   | `api`          | String       | ✕        | URL to API documentation or developer resources |
+| `↪ rate_limit`                                      | `api`          | Boolean      | ✕        | Indicates whether rate limiting is enforced (`true`/`false`). Add comments for additional access restrictions or exceptions. |
 
 #### Example:
 
@@ -227,12 +227,12 @@ The following declares support for Memento Protocol interfaces, including TimeMa
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `memento`                                           | `api`          | Table        | ✕        |             |
-| ↪ `timemap`                                         | `memento`      | Inline Table | ✕        | TimeMap (URI-T) endpoint declaration |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `endpoint`         | `timemap`      | String       | ✓        | URI template describing the endpoint location |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `access`           | `timemap`      | String       | ✓        | Access condition indicator. Recognised values include: `online`, `offline`, `local` |
-| ↪ `timegate`                                        | `memento`      | Inline Table | ✕        | TimeGate (URI-G) endpoint declaration |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `endpoint`         | `timegate`     | String       | ✓        | URI template describing the endpoint location |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `access`           | `timegate`     | String       | ✓        | Access condition indicator. Recognised values include: `online`, `offline`, `local` |
+| `↪ timemap`                                         | `memento`      | Inline Table | ✕        | TimeMap (URI-T) endpoint declaration |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ endpoint`         | `timemap`      | String       | ✓        | URI template describing the endpoint location |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ access`           | `timemap`      | String       | ✓        | Access condition indicator. Recognised values include: `online`, `offline`, `local` |
+| `↪ timegate`                                        | `memento`      | Inline Table | ✕        | TimeGate (URI-G) endpoint declaration |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ endpoint`         | `timegate`     | String       | ✓        | URI template describing the endpoint location |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ access`           | `timegate`     | String       | ✓        | Access condition indicator. Recognised values include: `online`, `offline`, `local` |
 
 > [!IMPORTANT]
 > All endpoint declarations for the Memento Protocol ([RFC7089](https://www.rfc-editor.org/info/rfc7089/)), including TimeGate URI-G (`api.memento.timegate.endpoint`) and TimeMap URI-T (`api.memento.timemap.endpoint`), **MUST** support the following placeholder variables:
@@ -271,9 +271,9 @@ The following declares support for a CDX-based server API, including endpoint co
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `cdx`                                               | `api`          | Table        | ✕        |             |
-| ↪ `query`                                           | `cdx`          | Inline Table | ✓        | CDX query endpoint declaration |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `endpoint`         | `query`        | String       | ✓        | URI template describing the endpoint location |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↪ `access`           | `query`        | String       | ✓        | Access condition indicator. Recognised values include: `online`, `offline`, `local` |
+| `↪ query`                                           | `cdx`          | Inline Table | ✓        | CDX query endpoint declaration |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ endpoint`         | `query`        | String       | ✓        | URI template describing the endpoint location |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪ access`           | `query`        | String       | ✓        | Access condition indicator. Recognised values include: `online`, `offline`, `local` |
 
 > [!IMPORTANT]
 > The endpoint declaration for the CDX Server API (`api.cdx.query.endpoint`) **MUST** support the following placeholder variables:
@@ -312,9 +312,9 @@ The following declares URI templates and state modifiers used to render archived
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `replay`                                            |                | Table        | ✕        |             |
-| ↪ `rewritten`                                       | `replay`       | String       | ✕        | Standard replay mode with archive rewriting enabled |
-| ↪ `no_toolbar`                                      | `replay`       | String       | ✕        | Replay mode without toolbar or banner injection |
-| ↪ `raw`                                             | `replay`       | String       | ✕        | Replay mode exposing minimally rewritten archived content |
+| `↪ rewritten`                                       | `replay`       | String       | ✕        | Standard replay mode with archive rewriting enabled |
+| `↪ no_toolbar`                                      | `replay`       | String       | ✕        | Replay mode without toolbar or banner injection |
+| `↪ raw`                                             | `replay`       | String       | ✕        | Replay mode exposing minimally rewritten archived content |
 
 > [!IMPORTANT]
 > The replay state modifier endpoints (`replay.rewritten`, `replay.no_toolbar`, `replay.raw`) **MUST** support the following placeholder variables:
