@@ -1,0 +1,24 @@
+{
+  "name": "@overbrowsing/web-archive.txt",
+  "version": "0.1.0",
+  "description": "A well-known URI capability descriptor for web archives.",
+  "author": "Overbrowsing",
+  "keywords": [
+    "memento",
+    "interoperability",
+    "web-archiving",
+    "well-known-uri"
+  ],
+  "license": "Apache-2.0",
+  "bin": {
+    "validate": "./bin/validator.js"
+  },
+  "scripts": {
+    "validate": "node ./bin/validator.js"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "ajv": "^8.14.0",
+    "ajv-formats": "^2.1.1"
+  }
+}

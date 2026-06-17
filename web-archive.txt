@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-04-23"
+
+[archive]
+id = "ukgwa"
+name =  [ "UK Government Web Archive", { alt = "UKGWA" } ]
+established = "1996"
+website = "https://www.nationalarchives.gov.uk/webarchive/"
+email = "webarchive@nationalarchives.gov.uk"
+
+[archive.organisation]
+name = [ "The National Archives", { alt = "TNA" } ]
+type = "national_archive"
+location = [ "GB" ]
+website = "https://www.nationalarchives.gov.uk/"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://www.legislation.gov.uk/ukpga/Eliz2/6-7/51/contents" }
+coverage = "1996-01-01/.."
+domains = [ ".gov.uk" ] # All UK government departments and bodies creating records defined as Public Records under the British Public Act
+
+[api]
+documentation = "https://webarchive.nationalarchives.gov.uk/ukgwa/help/"
+rate_limit = false # Contact us to request IP address whitelisting for high-volume access
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}"
+no_toolbar = "https://webarchive.nationalarchives.gov.uk/ukgwa/nobanner/{datetime}/{url}"
+raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"
