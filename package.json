@@ -11,7 +11,7 @@
   ],
   "license": "Apache-2.0",
   "bin": {
-    "validate": "./bin/validator.js"
+    "validate": "bin/validator.js"
   },
   "scripts": {
     "validate": "node ./bin/validator.js"
