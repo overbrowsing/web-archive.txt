@@ -17,7 +17,7 @@ The web archiving ecosystem is diverse and resilient but appears as a constellat
 > [!NOTE]
 > **[→ *web-archive.txt* Specification v0.1⁠](/specification/v0.1/specification.md)**
 
-*web-archive.txt* descriptors are written in [TOML](https://toml.io/), prioritising human readability while remaining fully machine-parseable. Native support for comments allows archives to include additional implementation context without affecting interoperability.
+*web-archive.txt* descriptors are written in [TOML](https://toml.io/), prioritising human readability while remaining fully machine-parseable. Native support for comments allows web archives to include additional implementation context without affecting interoperability.
 
 ### Example *web-archive.txt*
 
@@ -71,7 +71,7 @@ A conforming web archive **SHOULD** publish its descriptor in accordance with [R
 /.well-known/web-archive.txt
 ```
 
-Archives **MAY** additionally advertise the descriptor using an HTTP `Link` header:
+Web archives **MAY** additionally advertise the descriptor using an HTTP `Link` header:
 
 ```http
 Link: </.well-known/web-archive.txt>; rel="service-desc"
