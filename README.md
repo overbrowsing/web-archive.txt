@@ -81,6 +81,8 @@ Link: </.well-known/web-archive.txt>; rel="service-desc"
 
 A reference validator is provided to verify conformance of a *web-archive.txt* descriptor with the specification schema. It validates TOML structure, applies versioned schema rules, reports errors with location information and can verify declared API endpoints.
 
+<img src="assets/validator.png" loading="lazy" alt="Screenshot of a CLI running the web-archive.txt validator">
+
 ### Installation
 
 ```bash
