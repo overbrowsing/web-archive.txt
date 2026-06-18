@@ -10,7 +10,7 @@
 
 ## Why *web-archive.txt*?
 
-The web archiving ecosystem is diverse and resilient but appears as a constellation of “[siloed nodes](http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html)”. Identity, scope, governance, and access are often opaque and rely on ad hoc knowledge. As systems evolve, downstream aggregators and web archive indexes degrade, concentrating visibility and use in a small number of web archives. We developed *web-archive.txt* to address this by enabling each web archive to publish a standard descriptor, preserving diversity while making differences explicit in a structured, human- and machine-readable format and supporting interoperability through comparable metadata.
+The web archiving ecosystem is diverse and resilient but appears as a constellation of “[siloed nodes](http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html)”. Identity, scope, governance and access are often opaque and rely on ad hoc knowledge. As systems evolve, downstream aggregators and web archive indexes degrade, concentrating visibility and use in a small number of web archives. We developed *web-archive.txt* to address this by enabling each web archive to publish a standard descriptor, preserving diversity while making differences explicit in a structured, human- and machine-readable format and supporting interoperability through comparable metadata.
 
 ## *web-archive.txt* Specification
 
