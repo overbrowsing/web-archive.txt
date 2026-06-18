@@ -6,11 +6,11 @@
 
 ## Overview
 
-*web-archive.txt* is an open specification for web archive interoperability, defining a human- and machine-readable plain-text descriptor published via the Well-Known URI pattern ([RFC8615](https://www.rfc-editor.org/info/rfc8615/)). It provides a consistent way for archives to publish identity, scope and access interfaces while enabling discovery and verification of programmatic endpoints.
+*web-archive.txt* is an open specification for web archive interoperability, defining a human- and machine-readable plain-text descriptor published via the Well-Known URI pattern ([RFC8615](https://www.rfc-editor.org/info/rfc8615/)). It provides a consistent way for web archives to publish identity, scope and access interfaces while enabling discovery and verification of programmatic endpoints.
 
 ## Why *web-archive.txt*?
 
-The web archiving ecosystem is diverse and resilient but appears as a constellation of “[siloed nodes](http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html)”. Identity, scope, governance, and access are often opaque and rely on ad hoc knowledge. As systems evolve, downstream aggregators and web archive indexes degrade, concentrating visibility and use in a small number of web archives. We developed *web-archive.txt* to address this by enabling each archive to publish a standard descriptor, preserving diversity while making differences explicit in a structured, human- and machine-readable format and supporting interoperability through comparable metadata.
+The web archiving ecosystem is diverse and resilient but appears as a constellation of “[siloed nodes](http://www.dlib.org/dlib/november15/vandesompel/11vandesompel.html)”. Identity, scope, governance, and access are often opaque and rely on ad hoc knowledge. As systems evolve, downstream aggregators and web archive indexes degrade, concentrating visibility and use in a small number of web archives. We developed *web-archive.txt* to address this by enabling each web archive to publish a standard descriptor, preserving diversity while making differences explicit in a structured, human- and machine-readable format and supporting interoperability through comparable metadata.
 
 ## *web-archive.txt* Specification
 
