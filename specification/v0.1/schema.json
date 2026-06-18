@@ -24,7 +24,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "Stable machine-readable archive identifier consisting of 2-6 lowercase alphanumeric characters",
+          "description": "Stable machine-readable web archive identifier consisting of 2-6 lowercase alphanumeric characters",
           "pattern": "^[a-z0-9]{2,6}$"
         },
 
@@ -34,13 +34,13 @@
 
         "established": {
           "type": "string",
-          "description": "Archive establishment year, in RFC9557 year format (YYYY)",
+          "description": "Web archive establishment year, in RFC9557 year format (YYYY)",
           "pattern": "^\\d{4}$"
         },
 
         "website": {
           "type": "string",
-          "description": "Canonical public archive website URL",
+          "description": "Canonical public web archive website URL",
           "pattern": "^https?://.+$"
         },
 
@@ -87,7 +87,7 @@
           "properties": {
             "crawl": {
               "type": "array",
-              "description": "Crawl modalities (harvesting methods) used by the archive. Values MAY include: 'national_domain', 'regional_domain', 'bulk', 'selective', 'event', 'thematic', 'periodical'",
+              "description": "Crawl modalities (harvesting methods) used by the web archive. Values MAY include: 'national_domain', 'regional_domain', 'bulk', 'selective', 'event', 'thematic', 'periodical'",
               "items": { "type": "string" }
             },
 
@@ -207,7 +207,7 @@
       "properties": {
         "rewritten": {
           "type": "string",
-          "description": "Standard replay mode with archive rewriting enabled",
+          "description": "Standard replay mode with web archive rewriting enabled",
           "pattern": "^(?=https?://)(?=.*\\{url\\})(?=.*\\{datetime\\}).*$"
         },
 

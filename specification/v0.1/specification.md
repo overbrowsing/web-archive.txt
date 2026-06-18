@@ -47,7 +47,7 @@ The archive manifest defines the identity, governance, and collection scope of a
 
 It consists of three components:
 
-1. **[`archive`](#21-web-archive-identity-archive)**: defines the archive’s core identity and public-facing metadata  
+1. **[`archive`](#21-web-archive-identity-archive)**: defines the web archive’s core identity and public-facing metadata  
 2. **[`archive.organisation`](#22-web-archive-organisation-archiveorganisation)**: defines the organisation responsible for operating the web archive  
 3. **[`archive.scope`](#23-archive-scope-archivescope)**: defines what is collected, how it is collected, the authority under which it is collected, and any defined collections
 
@@ -60,12 +60,12 @@ The following declares the primary identity of the web archive.
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `archive`                                           |                | Table        | ✓        |             |
-| `↪⠀id`                                              | `archive`      | String       | ✓        | Stable machine-readable archive identifier consisting of 2–6 lowercase alphanumeric characters |
-| `↪⠀name`                                            | `archive`      | Inline Table | ✓        | Archive naming inline table |
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪⠀en`               | `name`         | String       | ✕        | English-language archive name |
+| `↪⠀id`                                              | `archive`      | String       | ✓        | Stable machine-readable web archive identifier consisting of 2–6 lowercase alphanumeric characters |
+| `↪⠀name`                                            | `archive`      | Inline Table | ✓        | Web archive naming inline table |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪⠀en`               | `name`         | String       | ✕        | English-language web archive name |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪⠀alt`              | `name`         | String       | ✕        | Alternative or abbreviated archive name |
-| `↪⠀established`                                     | `archive`      | String       | ✕        | Archive establishment year, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) year format (`YYYY`) |
-| `↪⠀website`                                         | `archive`      | String       | ✓        | Canonical public archive website URL |
+| `↪⠀established`                                     | `archive`      | String       | ✕        | Web archive establishment year, in [RFC9557](https://www.rfc-editor.org/info/rfc9557/) year format (`YYYY`) |
+| `↪⠀website`                                         | `archive`      | String       | ✓        | Canonical public web archive website URL |
 | `↪⠀email`                                           | `archive`      | String       | ✕        | Administrative or operational contact email address |
 
 #### Examples:
@@ -94,7 +94,7 @@ email = "nettarkivet@nb.no"
 
 ### 2.2. `archive.organisation`
 
-The following declares the institution responsible for operating or governing the archive.
+The following declares the institution responsible for operating or governing the web archive.
 
 #### Schema:
 
@@ -139,7 +139,7 @@ The following declares collection boundaries, crawl modalities, strategies and t
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `scope`                                             | `archive`      | Table        | ✓        |             |
-| `↪⠀crawl`                                           | `scope`        | Array        | ✓        | Crawl modalities (harvesting methods) used by the archive. Values MAY include: `national_domain`, `regional_domain`, `bulk`, `selective`, `event`, `thematic`, `periodical` |
+| `↪⠀crawl`                                           | `scope`        | Array        | ✓        | Crawl modalities (harvesting methods) used by the web archive. Values MAY include: `national_domain`, `regional_domain`, `bulk`, `selective`, `event`, `thematic`, `periodical` |
 | `↪⠀authority`                                       | `scope`        | Inline Table | ✓        | Legal or institutional basis for web archive crawling |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪⠀type`             | `authority`    | String       | ✓        | Authority model. Values **MAY** include: `legal_deposit`, `public_record`, `institutional`, `voluntary`, `research` |
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `↪⠀documentation`    | `authority`    | String       | ✕        | Reference describing the collection authority |
@@ -312,7 +312,7 @@ The following declares URI templates and state modifiers used to render archived
 | Property                                            | Parent         | Type         | Required | Description |
 |-----------------------------------------------------|----------------|--------------|----------|-------------|
 | `replay`                                            |                | Table        | ✕        |             |
-| `↪⠀rewritten`                                       | `replay`       | String       | ✕        | Standard replay mode with archive rewriting enabled |
+| `↪⠀rewritten`                                       | `replay`       | String       | ✕        | Standard replay mode with web archive rewriting enabled |
 | `↪⠀no_toolbar`                                      | `replay`       | String       | ✕        | Replay mode without toolbar or banner injection |
 | `↪⠀raw`                                             | `replay`       | String       | ✕        | Replay mode exposing minimally rewritten archived content |
 
