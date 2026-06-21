@@ -214,7 +214,7 @@ async function check(url, access) {
 
   version = resolveVersion(archive);
 
-  UI.log('info', `Schema detected v${version}...`);
+  UI.log('info', `Schema detected v${version}`);
 
   const schema = loadSchema(version);
   const index = buildIndex(schema);
