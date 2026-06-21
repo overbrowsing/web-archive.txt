@@ -156,16 +156,21 @@ function tryVersions(archive) {
 
 function resolveVersion(archive) {
   const declared = archive?.version?.replace(/^v/, '');
+  const detected = tryVersions(archive);
+  const requested =
+    versionOverride && availableVersions.includes(versionOverride)
+      ? versionOverride
+      : null;
 
-  if (versionOverride) {
-    if (availableVersions.includes(versionOverride)) return versionOverride;
-    UI.log('issue', 'Version not found, auto-detecting...');
-    return tryVersions(archive) || version;
+  if (declared && detected && declared !== detected) {
+    UI.log('error', `Manifest version (v${declared}) does not match requested schema version (v${detected})`);
+    process.exit(1);
   }
 
-  if (declared && availableVersions.includes(declared)) return declared;
+  if (versionOverride && !requested)
+    UI.log('issue', `Version v${versionOverride} not found, auto-detecting...`);
 
-  return tryVersions(archive) || version;
+  return requested || declared || detected || version;
 }
 
 /* ------------------- API Endpoint Collector ------------------- */
@@ -209,7 +214,7 @@ async function check(url, access) {
 
   version = resolveVersion(archive);
 
-  UI.log('info', `Using schema v${version}...`);
+  UI.log('info', `Schema detected v${version}...`);
 
   const schema = loadSchema(version);
   const index = buildIndex(schema);
