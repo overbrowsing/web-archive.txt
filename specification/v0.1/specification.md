@@ -340,7 +340,6 @@ raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"
 ```toml
 # 'replay' declaration for the National Archives and Records Administration (NARA) Web Archive 
 
-
 [replay]
 rewritten = "https://webharvest.gov/{collection}/{datetime}/{url}"
 no_toolbar = "https://webharvest.gov/{collection}/{datetime}if_/{url}"
