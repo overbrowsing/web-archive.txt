@@ -48,7 +48,7 @@ domains = [ ".gov.uk" ] # All UK government departments and bodies creating reco
 
 [api]
 documentation = "https://webarchive.nationalarchives.gov.uk/ukgwa/help/"
-rate_limit = false # Contact us to request IP address whitelisting for high-volume access
+rate_limit = false # IP address whitelisting can be requested for high-volume access
 
 [api.memento]
 timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
