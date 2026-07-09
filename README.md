@@ -1,9 +1,5 @@
 # web-archive.txt
 
-[![NPM version](https://img.shields.io/npm/v/@overbrowsing/web-archive.txt.svg)](https://www.npmjs.com/package/@overbrowsing/web-archive.txt)
-[![npm downloads](https://img.shields.io/npm/dm/@overbrowsing/web-archive.txt.svg)](https://www.npmtrends.com/@overbrowsing/web-archive.txt)
-[![License](https://img.shields.io/npm/l/@overbrowsing/web-archive.txt.svg)](https://tldrlegal.com/license/apache-license-2.0-(apache-2.0))
-
 ## Overview
 
 *web-archive.txt* is an open specification for web archive interoperability, defining a human- and machine-readable plain-text descriptor published via the Well-Known URI pattern ([RFC8615](https://www.rfc-editor.org/info/rfc8615/)). It provides a consistent way for web archives to publish identity, scope and access interfaces while enabling discovery and verification of programmatic endpoints.
@@ -85,9 +81,18 @@ A reference validator is provided to verify conformance of a *web-archive.txt* d
 
 ### Installation
 
-```bash
-npm i @overbrowsing/web-archive.txt
-```
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/overbrowsing/web-archive.txt.git
+   cd web-archive.txt
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
 
 ### Usage 
 
