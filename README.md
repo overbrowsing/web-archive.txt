@@ -81,40 +81,40 @@ A reference validator is provided to verify conformance of a *web-archive.txt* d
 
 ### Installation
 
-1. Clone the repository:
+   1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/overbrowsing/web-archive.txt.git
-   cd web-archive.txt
-   ```
+      ```bash
+      git clone https://github.com/overbrowsing/web-archive.txt.git
+      cd web-archive.txt
+      ```
 
-2. Install dependencies:
+   2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+      ```bash
+      npm install
+      ```
 
 ### Usage 
 
 Commands for validating:
 
-1. Validate the example *web-archive.txt* descriptor for the [UK Government Web Archive (UKGWA)⁠](https://www.nationalarchives.gov.uk/webarchive/), located in the repository root ([available here](./web-archive.txt)):
+   1. Validate the example *web-archive.txt* descriptor for the [UK Government Web Archive (UKGWA)⁠](https://www.nationalarchives.gov.uk/webarchive/), located in the repository root ([available here](./web-archive.txt)):
 
-   ```bash
-   npx validate
-   ```
+      ```bash
+      npx validate
+      ```
 
-2. Validate a target *web-archive.txt* using the latest schema version:
+   2. Validate a target *web-archive.txt* using the latest schema version:
 
-   ```bash
-   npx validate path/to/web-archive.txt
-   ```
+      ```bash
+      npx validate path/to/web-archive.txt
+      ```
 
-3. Validate a target *web-archive.txt* against a specific version of the specification (e.g. v0.1)
-  
-   ```bash
-   npx validate path/to/web-archive.txt --0.1
-   ```
+   3. Validate a target *web-archive.txt* against a specific version of the specification (e.g. v0.1)
+   
+      ```bash
+      npx validate path/to/web-archive.txt --0.1
+      ```
 
 ## Roadmap
 
