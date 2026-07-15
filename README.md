@@ -122,7 +122,7 @@ We are currently developing a bootstrap registry of known web archives, starting
 
 ## Credits
 
-Developed by the [Overbrowsing Research Group](https://overbrowsing.com) at the [Institute for Design Informatics, The University of Edinburgh](https://designinformatics.org/).
+Developed by the [Overbrowsing](https://overbrowsing.com) at the [Institute for Design Informatics, The University of Edinburgh](https://designinformatics.org/).
 
 ## Citing
 
