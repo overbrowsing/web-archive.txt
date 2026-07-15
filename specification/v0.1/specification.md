@@ -48,9 +48,9 @@ The archive manifest defines the identity, governance, and collection scope of a
 
 It consists of three components:
 
-   1. **[`archive`](#21-web-archive-identity-archive)**: defines the web archive’s core identity and public-facing metadata  
-   2. **[`archive.organisation`](#22-web-archive-organisation-archiveorganisation)**: defines the organisation responsible for operating the web archive  
-   3. **[`archive.scope`](#23-archive-scope-archivescope)**: defines what is collected, how it is collected, the authority under which it is collected, and any defined collections
+   1. **[`archive`](#2-archive)**: defines the web archive’s core identity and public-facing metadata  
+   2. **[`archive.organisation`](#22-archiveorganisation)**: defines the organisation responsible for operating the web archive  
+   3. **[`archive.scope`](#23-archivescope)**: defines what is collected, how it is collected, the authority under which it is collected, and any defined collections
 
 ### 2.1. `archive`
 
