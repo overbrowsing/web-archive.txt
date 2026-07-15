@@ -5,13 +5,13 @@
 ## Conformance
 
 > [!IMPORTANT]
->  The key words **"MUST"**, **"MUST NOT"**, **"REQUIRED"**, **"SHALL"**, **"SHALL NOT"**, **"SHOULD"**, **"SHOULD NOT"**, **"RECOMMENDED"**, **"MAY"**, and **"OPTIONAL"** in this document are to be interpreted as described in [RFC2119](https://www.rfc-editor.org/info/rfc2119/).
+> The key words **"MUST"**, **"MUST NOT"**, **"REQUIRED"**, **"SHALL"**, **"SHALL NOT"**, **"SHOULD"**, **"SHOULD NOT"**, **"RECOMMENDED"**, **"MAY"**, and **"OPTIONAL"** in this document are to be interpreted as described in [RFC2119](https://www.rfc-editor.org/info/rfc2119/).
 >
->  - Required properties (✓) **MUST** be present
->  - Optional properties (✕) **MAY** be omitted
->  - Unsupported or inapplicable properties **MUST** be omitted (null values are not permitted)
->  - URLs **MUST** be absolute, compliant, and include `http` or `https` scheme
->  - Comments are **OPTIONAL** for human interpretation
+>   - Required properties (✓) **MUST** be present
+>   - Optional properties (✕) **MAY** be omitted
+>   - Unsupported or inapplicable properties **MUST** be omitted (null values are not permitted)
+>   - URLs **MUST** be absolute, compliant, and include `http` or `https` scheme
+>   - Comments are **OPTIONAL** for human interpretation
 
 ## Schema Overview
 
@@ -238,12 +238,12 @@ The following declares support for Memento Protocol interfaces, including TimeMa
 > [!IMPORTANT]
 > All endpoint declarations for the Memento Protocol ([RFC7089](https://www.rfc-editor.org/info/rfc7089/)), including TimeGate URI-G (`api.memento.timegate.endpoint`) and TimeMap URI-T (`api.memento.timemap.endpoint`), **MUST** support the following placeholder variables:
 > 
->  - `{url}`: target resource URI
->  - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
+>   - `{url}`: target resource URI
+>   - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
 > 
 > Endpoint templates **MAY** additionally support:
 > 
->  - `{collection}`: collection identifier `archive.scope.collections.id`
+>   - `{collection}`: collection identifier `archive.scope.collections.id`
 
 #### Examples:
 
@@ -279,12 +279,12 @@ The following declares support for a CDX-based server API, including endpoint co
 > [!IMPORTANT]
 > The endpoint declaration for the CDX Server API (`api.cdx.query.endpoint`) **MUST** support the following placeholder variables:
 > 
->  - `{url}`: target resource URI
->  - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
+>   - `{url}`: target resource URI
+>   - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
 > 
 > Endpoint templates **MAY** additionally support:
 > 
->  - `{collection}`: collection identifier `archive.scope.collections.id`
+>   - `{collection}`: collection identifier `archive.scope.collections.id`
 
 #### Example:
 
@@ -320,12 +320,12 @@ The following declares URI templates and state modifiers used to render archived
 > [!IMPORTANT]
 > The replay state modifier endpoints (`replay.rewritten`, `replay.no_toolbar`, `replay.raw`) **MUST** support the following placeholder variables:
 > 
->  - `{url}`: target resource URI
->  - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
+>   - `{url}`: target resource URI
+>   - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
 > 
 > Endpoint templates **MAY** additionally support:
 > 
->  - `{collection}`: collection identifier `archive.scope.collections.id`
+>   - `{collection}`: collection identifier `archive.scope.collections.id`
 
 #### Example:
 
