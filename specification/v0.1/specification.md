@@ -6,20 +6,21 @@
 
 > [!IMPORTANT]
 >  The key words **"MUST"**, **"MUST NOT"**, **"REQUIRED"**, **"SHALL"**, **"SHALL NOT"**, **"SHOULD"**, **"SHOULD NOT"**, **"RECOMMENDED"**, **"MAY"**, and **"OPTIONAL"** in this document are to be interpreted as described in [RFC2119](https://www.rfc-editor.org/info/rfc2119/).
-> - Required properties (✓) **MUST** be present
-> - Optional properties (✕) **MAY** be omitted
-> - Unsupported or inapplicable properties **MUST** be omitted (null values are not permitted)
-> - URLs **MUST** be absolute, compliant, and include `http` or `https` scheme
-> - Comments are **OPTIONAL** for human interpretation
+>
+>  - Required properties (✓) **MUST** be present
+>  - Optional properties (✕) **MAY** be omitted
+>  - Unsupported or inapplicable properties **MUST** be omitted (null values are not permitted)
+>  - URLs **MUST** be absolute, compliant, and include `http` or `https` scheme
+>  - Comments are **OPTIONAL** for human interpretation
 
 ## Schema Overview
 
 The *web-archive.txt* descriptor is declarative and the schema is organised into four sections:
 
-1. **[Version](#1-version)**: specification version metadata
-2. **[Archive](#2-archive)**: web archive identity, governance and collection scope metadata
-3. **[Access](#3-access)**: supported programmatic access
-4. **[Replay](#4-replay)**: replay state modifier endpoints
+   1. **[Version](#1-version)**: specification version metadata
+   2. **[Archive](#2-archive)**: web archive identity, governance and collection scope metadata
+   3. **[Access](#3-access)**: supported programmatic access
+   4. **[Replay](#4-replay)**: replay state modifier endpoints
 
 ## 1. Version
 
@@ -47,9 +48,9 @@ The archive manifest defines the identity, governance, and collection scope of a
 
 It consists of three components:
 
-1. **[`archive`](#21-web-archive-identity-archive)**: defines the web archive’s core identity and public-facing metadata  
-2. **[`archive.organisation`](#22-web-archive-organisation-archiveorganisation)**: defines the organisation responsible for operating the web archive  
-3. **[`archive.scope`](#23-archive-scope-archivescope)**: defines what is collected, how it is collected, the authority under which it is collected, and any defined collections
+   1. **[`archive`](#21-web-archive-identity-archive)**: defines the web archive’s core identity and public-facing metadata  
+   2. **[`archive.organisation`](#22-web-archive-organisation-archiveorganisation)**: defines the organisation responsible for operating the web archive  
+   3. **[`archive.scope`](#23-archive-scope-archivescope)**: defines what is collected, how it is collected, the authority under which it is collected, and any defined collections
 
 ### 2.1. `archive`
 
@@ -192,9 +193,9 @@ collections = [
 
 The `api` manifest programmatic interfaces exposed by a web archive. The API model is declarative. It describes supported interfaces and endpoint templates without prescribing implementation behaviour. The manifest consists of three component tables:
 
-- **[`api`](#31-api)**: API documentation and access metadata
-- **[`api.memento`](#32-apimemento)**: Memento Protocol interface declarations
-- **[`api.cdx`](#33-apicdx)**: CDX query interface declarations
+   - **[`api`](#31-api)**: API documentation and access metadata
+   - **[`api.memento`](#32-apimemento)**: Memento Protocol interface declarations
+   - **[`api.cdx`](#33-apicdx)**: CDX query interface declarations
 
 ### 3.1 `api`
 
@@ -237,12 +238,12 @@ The following declares support for Memento Protocol interfaces, including TimeMa
 > [!IMPORTANT]
 > All endpoint declarations for the Memento Protocol ([RFC7089](https://www.rfc-editor.org/info/rfc7089/)), including TimeGate URI-G (`api.memento.timegate.endpoint`) and TimeMap URI-T (`api.memento.timemap.endpoint`), **MUST** support the following placeholder variables:
 > 
-> - `{url}`: target resource URI
-> - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
+>  - `{url}`: target resource URI
+>  - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
 > 
 > Endpoint templates **MAY** additionally support:
 > 
-> - `{collection}`: collection identifier `archive.scope.collections.id`
+>  - `{collection}`: collection identifier `archive.scope.collections.id`
 
 #### Examples:
 
@@ -278,12 +279,12 @@ The following declares support for a CDX-based server API, including endpoint co
 > [!IMPORTANT]
 > The endpoint declaration for the CDX Server API (`api.cdx.query.endpoint`) **MUST** support the following placeholder variables:
 > 
-> - `{url}`: target resource URI
-> - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
+>  - `{url}`: target resource URI
+>  - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
 > 
 > Endpoint templates **MAY** additionally support:
 > 
-> - `{collection}`: collection identifier `archive.scope.collections.id`
+>  - `{collection}`: collection identifier `archive.scope.collections.id`
 
 #### Example:
 
@@ -319,12 +320,12 @@ The following declares URI templates and state modifiers used to render archived
 > [!IMPORTANT]
 > The replay state modifier endpoints (`replay.rewritten`, `replay.no_toolbar`, `replay.raw`) **MUST** support the following placeholder variables:
 > 
-> - `{url}`: target resource URI
-> - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
+>  - `{url}`: target resource URI
+>  - `{datetime}`: 14-digit memento-datetime (`YYYYMMDDHHMMSS`)
 > 
 > Endpoint templates **MAY** additionally support:
 > 
-> - `{collection}`: collection identifier `archive.scope.collections.id`
+>  - `{collection}`: collection identifier `archive.scope.collections.id`
 
 #### Example:
 
