@@ -19,7 +19,7 @@
 
     "archive": {
       "type": "object",
-      "required": ["id", "name", "website"],
+      "required": ["id", "name", "website", "organisation", "scope"],
 
       "properties": {
         "id": {
