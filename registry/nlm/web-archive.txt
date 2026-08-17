@@ -9,7 +9,7 @@ website = "https://archive-it.org/organizations/350"
 email = "nlmwebcollecting@nlm.nih.gov"
 
 [archive.organisation]
-name = "National Library of Medicine"
+name = [ "National Institutes of Health", { alt = "NIH" } ]
 type = "national_library"
 location = [ "US" ]
 website = "https://nlm.nih.gov"
