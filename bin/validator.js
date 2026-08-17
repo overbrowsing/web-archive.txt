@@ -2,21 +2,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const Ajv = require('ajv');
-const addFormats = require('ajv-formats');
-const toml = require('@iarna/toml');
 
 /* ------------------- Runtime ------------------- */
 
 const fetch = globalThis.fetch;
-if (!fetch) {
-  process.exit(1);
-}
+if (!fetch) process.exit(1);
 
 /* ------------------- CLI Arguments ------------------- */
 
 const args = process.argv.slice(2);
-
 let file = 'web-archive.txt';
 let versionOverride = null;
 
@@ -81,21 +75,284 @@ const UI = {
   },
 };
 
-/* ------------------- TOML Normalisation ------------------- */
+/* ------------------- TOML Parser ------------------- */
 
-function normaliseToml(raw) {
-  return raw.replace(
-    /name\s*=\s*\[\s*"([^"]+)"\s*,\s*\{([^}]+)\}\s*\]/g,
-    (_, text, obj) => {
-      const fields = obj
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean)
-        .join(', ');
+function parseToml(input) {
+  let i = 0;
+  const len = input.length;
+  const root = {};
+  let current = root;
 
-      return `name = { text = "${text}", ${fields} }`;
+  const fail = msg => {
+    const line = input.slice(0, i).split('\n').length;
+    throw new Error(`TOML parse error at line ${line}: ${msg}`);
+  };
+
+  const isSpace = c => c === ' ' || c === '\t';
+  const skipSpace = () => { while (i < len && isSpace(input[i])) i++; };
+  const skipToLineEnd = () => { while (i < len && input[i] !== '\n') i++; };
+
+  const skipTrivia = () => {
+    while (i < len) {
+      const c = input[i];
+      if (isSpace(c) || c === '\n' || c === '\r') i++;
+      else if (c === '#') skipToLineEnd();
+      else break;
     }
-  );
+  };
+
+  function parseString(quote) {
+    i++;
+    let out = '';
+
+    while (i < len && input[i] !== quote) {
+      if (quote === '"' && input[i] === '\\') {
+        const esc = input[i + 1];
+        switch (esc) {
+          case 'n': out += '\n'; i += 2; break;
+          case 't': out += '\t'; i += 2; break;
+          case 'r': out += '\r'; i += 2; break;
+          case 'b': out += '\b'; i += 2; break;
+          case 'f': out += '\f'; i += 2; break;
+          case '"': out += '"'; i += 2; break;
+          case '\\': out += '\\'; i += 2; break;
+          case 'u': out += String.fromCodePoint(parseInt(input.slice(i + 2, i + 6), 16)); i += 6; break;
+          case 'U': out += String.fromCodePoint(parseInt(input.slice(i + 2, i + 10), 16)); i += 10; break;
+          default: out += esc; i += 2;
+        }
+      } else {
+        out += input[i++];
+      }
+    }
+
+    if (input[i] !== quote) fail('unterminated string');
+    i++;
+    return out;
+  }
+
+  function parseKey() {
+    skipSpace();
+    if (input[i] === '"' || input[i] === "'") return parseString(input[i]);
+
+    const start = i;
+    while (i < len && /[A-Za-z0-9_-]/.test(input[i])) i++;
+    if (i === start) fail('expected key');
+    return input.slice(start, i);
+  }
+
+  function parseValue() {
+    skipSpace();
+    const c = input[i];
+
+    if (c === '"' || c === "'") return parseString(c);
+    if (c === '[') return parseArray();
+    if (c === '{') return parseInlineTable();
+    if (input.startsWith('true', i)) { i += 4; return true; }
+    if (input.startsWith('false', i)) { i += 5; return false; }
+
+    const start = i;
+    while (i < len && !',]}\n#\r'.includes(input[i])) i++;
+    const raw = input.slice(start, i).trim();
+    if (!raw) fail('expected value');
+    return /^-?\d+(\.\d+)?$/.test(raw) ? Number(raw) : raw;
+  }
+
+  function parseArray() {
+    i++;
+    const arr = [];
+
+    while (true) {
+      skipTrivia();
+      if (input[i] === ']') { i++; return arr; }
+
+      arr.push(parseValue());
+      skipTrivia();
+
+      if (input[i] === ',') { i++; continue; }
+      if (input[i] === ']') { i++; return arr; }
+      fail("expected ',' or ']' in array");
+    }
+  }
+
+  function parseInlineTable() {
+    i++;
+    const obj = {};
+    skipSpace();
+    if (input[i] === '}') { i++; return obj; }
+
+    while (true) {
+      const key = parseKey();
+      skipSpace();
+      if (input[i] !== '=') fail("expected '=' in inline table");
+      i++;
+      obj[key] = parseValue();
+      skipSpace();
+
+      if (input[i] === ',') { i++; skipSpace(); continue; }
+      if (input[i] === '}') { i++; return obj; }
+      fail("expected ',' or '}' in inline table");
+    }
+  }
+
+  function parseTableHeader() {
+    i++;
+    const parts = [];
+
+    while (true) {
+      parts.push(parseKey());
+      skipSpace();
+      if (input[i] === '.') { i++; continue; }
+      break;
+    }
+
+    if (input[i] !== ']') fail("expected ']' after table header");
+    i++;
+
+    current = parts.reduce((node, part) => {
+      if (typeof node[part] !== 'object' || Array.isArray(node[part])) node[part] = {};
+      return node[part];
+    }, root);
+  }
+
+  while (true) {
+    skipTrivia();
+    if (i >= len) break;
+
+    if (input[i] === '[') {
+      parseTableHeader();
+      continue;
+    }
+
+    const key = parseKey();
+    skipSpace();
+    if (input[i] !== '=') fail(`expected '=' after key "${key}"`);
+    i++;
+
+    current[key] = parseValue();
+    skipSpace();
+    if (input[i] === '#') skipToLineEnd();
+  }
+
+  return root;
+}
+
+function normaliseNames(node) {
+  if (Array.isArray(node)) return node.forEach(normaliseNames);
+  if (!node || typeof node !== 'object') return;
+
+  for (const [key, val] of Object.entries(node)) {
+    const isNameShorthand =
+      key === 'name' &&
+      Array.isArray(val) &&
+      val.length === 2 &&
+      typeof val[0] === 'string' &&
+      val[1] && typeof val[1] === 'object' && !Array.isArray(val[1]) &&
+      !('text' in val[1]);
+
+    if (isNameShorthand) node[key] = { text: val[0], ...val[1] };
+    else normaliseNames(val);
+  }
+}
+
+/* ------------------- Schema Validator ------------------- */
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const TYPE_CHECKS = {
+  object: v => v !== null && typeof v === 'object' && !Array.isArray(v),
+  array: Array.isArray,
+  string: v => typeof v === 'string',
+  boolean: v => typeof v === 'boolean',
+  number: v => typeof v === 'number',
+  integer: v => typeof v === 'number' && Number.isInteger(v),
+};
+
+function resolveRef(root, ref) {
+  const parts = ref.replace(/^#/, '').split('/').filter(Boolean);
+  return [parts.reduce((node, part) => node[part], root), `/${parts.join('/')}`];
+}
+
+function validateAgainst(instance, schema, root, instancePath, schemaPath, errors) {
+  if (schema.$ref) {
+    const [target, refPath] = resolveRef(root, schema.$ref);
+    return validateAgainst(instance, target, root, instancePath, refPath, errors);
+  }
+
+  if (schema.oneOf) {
+    const matches = schema.oneOf.filter((sub, i) => {
+      const subErrors = [];
+      validateAgainst(instance, sub, root, instancePath, `${schemaPath}/oneOf/${i}`, subErrors);
+      return !subErrors.length;
+    }).length;
+
+    if (matches !== 1) errors.push({ instancePath, schemaPath: `${schemaPath}/oneOf`, message: 'must match exactly one schema in oneOf' });
+    return;
+  }
+
+  if (schema.anyOf) {
+    const matched = schema.anyOf.some((sub, i) => {
+      const subErrors = [];
+      validateAgainst(instance, sub, root, instancePath, `${schemaPath}/anyOf/${i}`, subErrors);
+      return !subErrors.length;
+    });
+
+    if (!matched) errors.push({ instancePath, schemaPath: `${schemaPath}/anyOf`, message: 'must match at least one schema in anyOf' });
+    return;
+  }
+
+  if (schema.type && !TYPE_CHECKS[schema.type](instance)) {
+    errors.push({ instancePath, schemaPath: `${schemaPath}/type`, message: `must be ${schema.type}` });
+    return;
+  }
+
+  if (TYPE_CHECKS.object(instance)) {
+    for (const key of schema.required || []) {
+      if (!(key in instance)) {
+        errors.push({ instancePath, schemaPath: `${schemaPath}/required`, message: `must have required property '${key}'` });
+      }
+    }
+
+    const properties = schema.properties || {};
+
+    if (schema.additionalProperties === false) {
+      for (const k of Object.keys(instance)) {
+        if (!(k in properties)) {
+          errors.push({ instancePath, schemaPath: `${schemaPath}/additionalProperties`, message: 'must NOT have additional properties' });
+        }
+      }
+    }
+
+    for (const [k, v] of Object.entries(properties)) {
+      if (k in instance) validateAgainst(instance[k], v, root, `${instancePath}/${k}`, `${schemaPath}/properties/${k}`, errors);
+    }
+  }
+
+  if (Array.isArray(instance)) {
+    if (schema.minItems !== undefined && instance.length < schema.minItems) {
+      errors.push({ instancePath, schemaPath: `${schemaPath}/minItems`, message: `must NOT have fewer than ${schema.minItems} items` });
+    }
+    if (schema.maxItems !== undefined && instance.length > schema.maxItems) {
+      errors.push({ instancePath, schemaPath: `${schemaPath}/maxItems`, message: `must NOT have more than ${schema.maxItems} items` });
+    }
+    if (schema.items) {
+      instance.forEach((item, idx) => validateAgainst(item, schema.items, root, `${instancePath}/${idx}`, `${schemaPath}/items`, errors));
+    }
+  }
+
+  if (typeof instance === 'string') {
+    if (schema.pattern && !new RegExp(schema.pattern).test(instance)) {
+      errors.push({ instancePath, schemaPath: `${schemaPath}/pattern`, message: `must match pattern "${schema.pattern}"` });
+    }
+    if (schema.format === 'email' && !EMAIL_RE.test(instance)) {
+      errors.push({ instancePath, schemaPath: `${schemaPath}/format`, message: 'must match format "email"' });
+    }
+  }
+}
+
+function schemaErrors(instance, schema) {
+  const errors = [];
+  validateAgainst(instance, schema, schema, '', '', errors);
+  return errors;
 }
 
 /* ------------------- Schema Indexing ------------------- */
@@ -105,7 +362,6 @@ function buildIndex(schema) {
 
   const walk = (n, p = '') => {
     if (!n || typeof n !== 'object') return;
-
     if (n.description) map.set(p, n.description);
 
     if (n.properties)
@@ -143,14 +399,9 @@ function loadSchema(v) {
 }
 
 function tryVersions(archive) {
-  const ajv = new Ajv({ allErrors: true, strict: false });
-  addFormats(ajv);
-
   for (const v of availableVersions) {
-    const validate = ajv.compile(loadSchema(v));
-    if (validate(archive)) return v;
+    if (!schemaErrors(archive, loadSchema(v)).length) return v;
   }
-
   return null;
 }
 
@@ -184,17 +435,40 @@ const collectEndpoints = ({ api = {} }) =>
     .filter(([, e]) => e?.endpoint)
     .map(([label, e]) => [label, e.endpoint, e.access || 'online']);
 
+const CHECK_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (compatible; web-archive-txt; +https://github.com/overbrowsing/web-archive.txt)',
+};
+
+const probeUrl = url => url.replace(/\{[^}]+\}/g, 'x');
+
 async function check(url, access) {
-  if (!url) return 'error';
-  if (access === 'local' || access === 'offline') return 'skip';
+  if (!url) return ['error', 'no endpoint URL'];
+  if (access === 'local' || access === 'offline') return ['skip', null];
 
   try {
-    const origin = new URL(url).origin;
-    const res = await fetch(origin, { method: 'HEAD' });
-    return res.ok ? 'ok' : 'error';
-  } catch {
-    return 'error';
+    const res = await fetch(probeUrl(url), { headers: CHECK_HEADERS });
+    if (res.ok || res.status === 404) return ['ok', null];
+    return ['error', `HTTP ${res.status} ${res.statusText}`.trim()];
+  } catch (e) {
+    return ['error', e.cause?.message || e.message];
   }
+}
+
+/* ------------------- Name Formatting ------------------- */
+
+function formatName(nameField) {
+  if (nameField == null) return 'Unknown archive';
+
+  const candidates = Array.isArray(nameField) ? nameField : [nameField];
+  const obj = candidates.find(n => n && typeof n === 'object');
+  const str = candidates.find(n => typeof n === 'string');
+
+  if (!obj) return str || 'Unknown archive';
+
+  const text = obj.text || str;
+  if (obj.en && text) return `${obj.en} (${text})`;
+  if (obj.alt && text) return `${text} (${obj.alt})`;
+  return text || obj.en || obj.alt || 'Unknown archive';
 }
 
 /* ------------------- Main CLI ------------------- */
@@ -210,24 +484,26 @@ async function check(url, access) {
     process.exit(1);
   }
 
-  const archive = toml.parse(normaliseToml(fs.readFileSync(filePath, 'utf8')));
+  let archive;
+  try {
+    archive = parseToml(fs.readFileSync(filePath, 'utf8'));
+  } catch (e) {
+    UI.log('error', `TOML parse error: ${e.message}`);
+    process.exit(1);
+  }
+  normaliseNames(archive);
 
   version = resolveVersion(archive);
-
   UI.log('info', `Schema detected v${version}`);
 
   const schema = loadSchema(version);
-  const index = buildIndex(schema);
+  const errors = schemaErrors(archive, schema);
 
-  const ajv = new Ajv({ allErrors: true, strict: false });
-  addFormats(ajv);
-
-  const validate = ajv.compile(schema);
-
-  if (!validate(archive)) {
+  if (errors.length) {
+    const index = buildIndex(schema);
     UI.log('error', 'Schema validation error(s) detected');
 
-    for (const e of validate.errors || []) {
+    for (const e of errors) {
       UI.log('issue', `Property: ${(e.instancePath || '/').replace(/^\//, '').replace(/\//g, '.')}`);
       UI.log('issue', `Value: ${JSON.stringify((e.instancePath || '').split('/').filter(Boolean).reduce((acc, key) => acc?.[key], archive))}`);
       UI.log('issue', `Reason: ${resolveErr(e, index)}`);
@@ -238,14 +514,15 @@ async function check(url, access) {
   }
 
   const endpoints = collectEndpoints(archive);
-  let ok = true;
+  let unreachable = 0;
 
-  if (!endpoints.length) UI.log('info', 'No API endpoints declared');
-  else {
+  if (!endpoints.length) {
+    UI.log('info', 'No API endpoints declared');
+  } else {
     UI.log('info', 'Checking API endpoints...');
 
     for (const [label, url, access] of endpoints) {
-      const status = await check(url, access);
+      const [status, detail] = await check(url, access);
 
       console.log(`    ${label}`);
       console.log(`    ├─ Endpoint: ${url}`);
@@ -255,25 +532,18 @@ async function check(url, access) {
           ? '└─ Status: Online'
           : status === 'skip'
             ? '└─ Status: Local only'
-            : '└─ Status: Offline';
+            : `└─ Status: Unreachable${detail ? ` (${detail})` : ''}`;
 
-      UI.log(status === 'ok' ? 'ok' : status === 'skip' ? 'issue' : 'error', msg);
-
-      if (status === 'error') ok = false;
+      UI.log(status === 'ok' ? 'ok' : status === 'skip' ? 'issue' : 'issue', msg);
+      if (status === 'error') unreachable++;
     }
   }
 
-  const name =
-    archive?.archive?.name?.text ||
-    archive?.archive?.name?.en ||
-    archive?.archive?.name?.alt ||
-    archive?.archive?.name ||
-    'Unknown archive';
-
-  UI.log(ok ? 'ok' : 'error', ok ? 'Validation passed!' : 'Validation failed');
-  UI.log('info', `Web archive detected: ${name}`);
-
-  if (!ok) process.exit(1);
+  UI.log('ok', 'Validation passed!');
+  if (unreachable) {
+    UI.log('issue', `${unreachable} endpoint${unreachable === 1 ? '' : 's'} unreachable (schema is valid; this does not fail validation)`);
+  }
+  UI.log('info', `Web archive detected: ${formatName(archive?.archive?.name)}`);
 
   UI.line();
 })();
