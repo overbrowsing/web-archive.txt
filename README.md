@@ -186,15 +186,14 @@ This registry **MAY** be used as an interim aggregator via the [GitHub Contents 
       ```bash
       # Replace 'ia' (Internet Archive) with any web archive ID from the registry above
 
-      curl https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/ia/web-archive.txt
+      curl -sL https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/ia/web-archive.txt
       ```
 
    2. Fetch every *web-archive.txt* descriptor from the registry:
 
       ```bash
-      for ARCHIVE in $(curl -s https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/
-         | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
-         curl -s "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$ARCHIVE/web-archive.txt"
+      for ARCHIVE in $(curl -sL https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/ | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
+        curl -sL "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$ARCHIVE/web-archive.txt"
       done
       ```
 
@@ -203,15 +202,14 @@ This registry **MAY** be used as an interim aggregator via the [GitHub Contents 
       ```bash
       URL="https://example.com"
 
-      for ARCHIVE in $(curl -s https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/
-         | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
-         DESCRIPTOR=$(curl -s "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$ARCHIVE/web-archive.txt")
-         ENDPOINT=$(echo "$DESCRIPTOR" | awk '/^\[api\.cdx\]/{f=1; next} /^\[/{f=0} f' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2)
-         [ -z "$ENDPOINT" ] && continue
-         NAME_LINE=$(echo "$DESCRIPTOR" | grep -m1 '^name =')
-         EN=$(echo "$NAME_LINE" | grep -o 'en = "[^"]*"' | cut -d'"' -f2)
-         NAME=${EN:-$(echo "$NAME_LINE" | grep -o '"[^"]*"' | head -1 | tr -d '"')}
-         curl -s "${ENDPOINT/\{url\}/$URL}" | grep -q . && echo "$NAME"
+      for ARCHIVE in $(curl -sL https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/ | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
+        DESCRIPTOR=$(curl -sL "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$ARCHIVE/web-archive.txt")
+        ENDPOINT=$(echo "$DESCRIPTOR" | awk '/^\[api\.cdx\]/{f=1; next} /^\[/{f=0} f' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2)
+        [ -z "$ENDPOINT" ] && continue
+        NAME_LINE=$(echo "$DESCRIPTOR" | grep -m1 '^name =')
+        EN=$(echo "$NAME_LINE" | grep -o 'en = "[^"]*"' | cut -d'"' -f2)
+        NAME=${EN:-$(echo "$NAME_LINE" | grep -o '"[^"]*"' | head -1 | tr -d '"')}
+        curl -sL "${ENDPOINT/\{url\}/$URL}" | grep -q . && echo "$NAME"
       done
       ```
 
