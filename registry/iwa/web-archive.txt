@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "iwa"
+name = [ "Vefsafn.is", { en = "Icelandic Web Archive" } ]
+established = "2004"
+website = "https://vefsafn.is"
+email = "landsbokasafn@landsbokasafn.is"
+
+[archive.organisation]
+name = [ "Landsbókasafn Íslands – Háskólabókasafn", { en = "National and University Library of Iceland" } ]
+type = "national_library"
+location = [ "IS" ]
+website = "https://landsbokasafn.is"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "event" ]
+authority = { type = "legal_deposit", documentation = "https://althingi.is/lagas/nuna/2002020.html" } # legal deposit extended to the web in 2003 (Lög nr. 20/2002 um skylduskil til safna)
+coverage = "2004-10-01/.." # national_domain crawls (several times/year); selective (weekly); events (e.g. elections) harvested separately
+domains = [ ".is" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://vefsafn.is/is/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://vefsafn.is/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://vefsafn.is/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://vefsafn.is/{datetime}/{url}"
+no_toolbar = "https://vefsafn.is/{datetime}if_/{url}"
+raw = "https://vefsafn.is/{datetime}id_/{url}"

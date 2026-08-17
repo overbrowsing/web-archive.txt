@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "cat"
+name = [ "L'Arxiu Web de Catalunya", { en = "The Web Archive of Catalonia", alt = "PADICAT" } ]
+established = "2005"
+website = "https://padicat.cat"
+email = "padicat@bnc.cat"
+
+[archive.organisation]
+name = [ "Biblioteca de Catalunya", { en = "Library of Catalonia" } ]
+type = "state_library"
+location = [ "ES-CT" ]
+website = "https://bnc.cat"
+
+[archive.scope]
+crawl = [ "regional_domain", "bulk", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://bnc.cat/eng/professionals/legal-deposit" } # legal deposit extended to the web in 2011 (Llei 23/2011, de dipòsit legal)
+coverage = "2005-01-01/.."
+domains = [ ".cat" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://wayback.padicat.cat/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.padicat.cat/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.padicat.cat/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.padicat.cat/{datetime}/{url}"
+no_toolbar = "https://wayback.padicat.cat/{datetime}np_/{url}"
+raw = "https://wayback.padicat.cat/{datetime}id_/{url}"

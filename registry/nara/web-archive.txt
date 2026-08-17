@@ -1,0 +1,50 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nara"
+name = [ "Congressional & Federal Web Harvests", { alt = "NARA Web Harvests" } ]
+established = "2004"
+website = "https://webharvest.gov"
+email = "legislative.archives@nara.gov"
+
+[archive.organisation]
+name = [ "National Archives and Records Administration", { alt = "NARA" } ]
+type = "national_archive"
+location = [ "US" ]
+website = "https://archives.gov"
+
+[archive.scope]
+crawl = [ "selective", "event", "periodical" ] # Congressional harvests recur biennially at end of term; White House/Federal-agency harvests are one-off
+authority = { type = "public_record", documentation = "https://archives.gov/records-mgmt/policy/web-records" } # Federal Records Act and Presidential Records Act (44 U.S.C.); Congressional harvest run separately by NARA's Center for Legislative Archives
+coverage = "2004-01-20/.."
+domains = [ ".gov", ".mil" ] # Congressional harvests cover .senate.gov/.house.gov; 2004 harvest covered general Federal agency sites
+collections = [
+  { id = "peth04", name = "Presidential Term (2004)" },
+  { id = "congress109th", name = "109th Congress (2006)" },
+  { id = "congress110th", name = "110th Congress (2008)" },
+  { id = "congress111th", name = "111th Congress (2010)" },
+  { id = "congress112th", name = "112th Congress (2012)" },
+  { id = "congress113th", name = "113th Congress (2014)" },
+  { id = "congress114th", name = "114th Congress (2016)" },
+  { id = "congress115th", name = "115th Congress (2018)" },
+  { id = "congress116th", name = "116th Congress (2020)" },
+  { id = "congress117th", name = "117th Congress (2022)" },
+  { id = "congress118th", name = "118th Congress (2024)" },
+  { id = "peot24", name = "Biden White House (2025)" }
+]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webharvest.gov/{collection}/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webharvest.gov/{collection}/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webharvest.gov/{collection}/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webharvest.gov/{collection}/{datetime}/{url}"
+no_toolbar = "https://webharvest.gov/{collection}/{datetime}if_/{url}"
+raw = "https://webharvest.gov/{collection}/{datetime}id_/{url}"

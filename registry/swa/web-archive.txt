@@ -1,0 +1,22 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "swa"
+
+name = [ "Archivo de la Web Española", { en = "Spanish Web Archive" } ]
+established = "2009"
+website = "https://bne.es/es/colecciones/archivo-web-espanola"
+email = "archivoweb@bne.es"
+
+[archive.organisation]
+name = [ "Biblioteca Nacional de España", { en = "National Library of Spain", alt = "BNE" } ]
+type = "national_library"
+location = [ "ES" ]
+website = "https://bne.es"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://boe.es/diario_boe/txt.php?id=BOE-A-2011-13114" } # legal deposit extended to the web in 2011 (Ley 23/2011)
+coverage = "2009-01-01/.."
+domains = [ ".es" ]

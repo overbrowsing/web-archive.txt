@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nbch"
+name = [ "Webarchiv Schweiz", { en = "Web Archive Switzerland" } ]
+established = "2008"
+website = "https://e-helvetica.nb.admin.ch"
+email = "webarchiv-schweiz@nb.admin.ch"
+
+[archive.organisation]
+name = [ "Schweizerische Nationalbibliothek", { en = "Swiss National Library", alt = "NB" } ]
+type = "national_library"
+location = [ "CH" ]
+website = "https://nb.admin.ch"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "institutional", documentation = "https://fedlex.admin.ch/eli/cc/1993/1773_1773_1773/de" } # Switzerland has no legal deposit law for digital/web content; harvesting is based on the Swiss National Library Act (NBibG, SR 432.21, 1992) and voluntary agreements with website owners
+coverage = "2008-01-01/.." # selective per-site harvest cadence (usually biennial; once-only or 4-yearly also used, set per website); no automated .ch domain crawl

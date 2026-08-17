@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nbs"
+name = [ "Народна библиотека Србије", { en = "National Library of Serbia" } ]
+established = "2015"
+website = "https://nb.rs"
+
+[archive.organisation]
+name = [ "Народна библиотека Србије", { en = "National Library of Serbia", alt = "NBS" } ]
+type = "national_library"
+location = [ "RS" ]
+website = "https://nb.rs"
+
+[archive.scope]
+crawl = [ "national_domain" ]
+authority = { type = "legal_deposit", documentation = "https://www.paragraf.rs/propisi/zakon-o-bibliotecko-informacionoj-delatnosti.html" } # legal deposit extended to the web in 2011 (Zakon o bibliotečko-informacionoj delatnosti)
+coverage = "2015-01-01/.."
+domains = [ ".rs", ".срб" ]

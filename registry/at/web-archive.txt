@@ -1,0 +1,27 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "at"
+name = [ "archive.today", { alt = "archive.ph" } ]
+established = "2012"
+website = "https://archive.today"
+
+[archive.organisation]
+name = [ "Unknown" ]
+type = "commercial"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "voluntary" }
+coverage = "2012-01-01/.."
+
+[api]
+rate_limit = true # Per-IP quotas apply; VPNs and proxies may trigger frequent reCAPTCHA challenges.
+
+[api.memento]
+timemap = { endpoint = "https://archive.today/timemap/{url}", access = "online" } # Memento coverage is limited to top-level page captures; embedded resources (images, stylesheets)
+timegate = { endpoint = "https://archive.today/timegate/{url}", access = "online" }
+
+[replay]
+rewritten = "https://archive.today/{datetime}/{url}"

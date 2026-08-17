@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "bnl"
+name = [ "Archives du web luxembourgeois", { en = "Luxembourg Web Archive" } ]
+established = "2016"
+website = "https://webarchive.lu"
+email = "webharvesting@bnl.etat.lu"
+
+[archive.organisation]
+name = [ "Bibliothèque nationale du Luxembourg", { en = "National Library of Luxembourg", alt = "BnL" } ]
+type = "national_library"
+location = [ "LU" ]
+website = "https://bnl.public.lu"
+
+[archive.scope]
+crawl = [ "national_domain", "bulk", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://bnl.public.lu/fr/services/depot-legal.html" } # legal deposit extended to the web in 2009
+coverage = "2016-01-01/.."
+domains = [ ".lu" ]

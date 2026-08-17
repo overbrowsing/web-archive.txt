@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "bnf"
+name = [ "Archives de l'internet", { en = "BnF Web Archives", alt = "BnF" } ]
+established = "2002"
+website = "https://bnf.fr/fr/consultation-des-archives-de-linternet-de-la-bnf"
+email = "depot.legal.web@bnf.fr"
+
+[archive.organisation]
+name = [ "Bibliothèque nationale de France", { alt = "BnF" } ]
+type = "national_library"
+location = [ "FR" ]
+website = "https://bnf.fr"
+
+[archive.scope]
+crawl = [ "national_domain", "bulk", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://legifrance.gouv.fr/codes/article_lc/LEGIARTI000006845516" } # legal deposit extended to the web in 2006 (DADVSI law)
+coverage = "1996-01-01/.." # Began capturing in 2006; backfilled coverage to 1996 by the Internet Archive
+domains = [ ".fr" ]

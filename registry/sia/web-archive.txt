@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "sia"
+name = "Smithsonian Institution Archives"
+established = "1998"
+website = "https://siarchives.si.edu"
+email = "info@si.edu"
+
+[archive.organisation]
+name = "Smithsonian Libraries and Archives"
+type = "research_institute"
+location = [ "US" ]
+website = "https://librariesarchives.si.edu"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }
+coverage = "1998-01-01/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-660/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-660/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-660/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-660/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-660/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-660/{datetime}id_/{url}"

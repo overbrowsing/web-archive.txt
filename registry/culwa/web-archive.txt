@@ -1,0 +1,33 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "culwa"
+name = "Columbia University Libraries Web Archives"
+established = "2008"
+website = "https://wayback.archive-it.org/org-304"
+
+[archive.organisation]
+name = "Columbia University Libraries"
+type = "university"
+location = [ "US" ]
+
+[archive.scope]
+crawl = [ "selective", "thematic" ]
+authority = { type = "institutional" }
+coverage = "2008-01-01/.."
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-304/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-304/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-304/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-304/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-304/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-304/{datetime}id_/{url}"

@@ -1,0 +1,19 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "ina"
+name = [ "INAthèque L'archive du web", { en = "INAthèque Web Archive" } ]
+established = "2009"
+website = "https://inatheque.ina.fr" # onsite access only (Inathèque Paris, six regional delegations, partner university libraries)
+
+[archive.organisation]
+name = [ "Institut National de l'Audiovisuel", { en = "National Audiovisual Institute", alt = "INA" } ]
+type = "government"
+location = [ "FR" ]
+website = "https://ina.fr"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://legifrance.gouv.fr/codes/article_lc/LEGIARTI000006845516" } # legal deposit extended to the web in 2006 (DADVSI law)
+coverage = "1996-01-01/.." # Began capturing in 2009; backfilled coverage to 1996 by the Internet Archive

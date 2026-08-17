@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "swap"
+name = [ "Stanford Web Archive Portal", { alt = "SWAP" } ]
+established = "2014"
+website = "https://swap.stanford.edu/was"
+email = "sul-was-contact@lists.stanford.edu"
+
+[archive.organisation]
+name = [ "Stanford University Libraries", { alt = "SUL" } ]
+type = "university"
+location = [ "US-CA" ]
+website = "https://library.stanford.edu"
+
+[api]
+rate_limit = false
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }
+coverage = "2014-01-01/.."
+
+[api.memento]
+timemap = { endpoint = "https://swap.stanford.edu/was/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://swap.stanford.edu/was/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://swap.stanford.edu/was/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://swap.stanford.edu/was/{datetime}/{url}"
+no_toolbar = "https://swap.stanford.edu/was/{datetime}if_/{url}"
+raw = "https://swap.stanford.edu/was/{datetime}id_/{url}"

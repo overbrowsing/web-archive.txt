@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "cwa"
+name = [ "Archivo de la Web Chilena", { en = "Chilean Web Archive" } ]
+established = "2013"
+website = "https://bibliotecanacionaldigital.gob.cl/bnd/612/w3-propertyname-814.html"
+email = "biblioteca.nacional@bibliotecanacional.gob.cl"
+
+[archive.organisation]
+name = [ "Biblioteca Nacional de Chile", { en = "National Library of Chile" } ]
+type = "national_library"
+location = [ "CL" ]
+website = "https://bibliotecanacional.gob.cl"
+
+[archive.scope]
+crawl = [ "selective", "event" ]
+authority = { type = "legal_deposit", documentation = "https://bcn.cl/leychile/navegar?idNorma=186049" } # legal deposit extended to the web in 2001 (Ley 19.733)
+coverage = "2013-01-01/.."

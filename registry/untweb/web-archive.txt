@@ -1,0 +1,34 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "untweb"
+name = [ "UNT Web Archives", { alt = "UNTWA" } ]
+established = "1997"
+website = "https://digital.library.unt.edu/explore/collections/untweb"
+
+[archive.organisation]
+name = [ "University of North Texas Libraries", { alt = "UNT" } ]
+type = "university"
+location = [ "US" ]
+website = "https://library.unt.edu"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ]
+authority = { type = "institutional" }
+coverage = "1997-01-01/.."
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.library.unt.edu/allcollections/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.library.unt.edu/allcollections/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.library.unt.edu/allcollections/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.library.unt.edu/allcollections/{datetime}/{url}"
+no_toolbar = "https://webarchive.library.unt.edu/allcollections/{datetime}x_/{url}"
+raw = "https://webarchive.library.unt.edu/allcollections/{datetime}id_/{url}"

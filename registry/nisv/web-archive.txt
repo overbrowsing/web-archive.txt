@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nisv"
+name = [ "Nederlands Instituut voor Beeld en Geluid", { en = "Netherlands Institute for Sound and Vision", alt = "Beeld en Geluid" } ]
+established = "2011"
+website = "https://archive-it.org/home/beeldengeluid"
+email = "info@beeldengeluid.nl"
+
+[archive.organisation]
+name = [ "Nederlands Instituut voor Beeld en Geluid", { en = "Netherlands Institute for Sound and Vision" } ]
+type = "nonprofit"
+location = [ "NL" ]
+website = "https://beeldengeluid.nl"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ]
+authority = { type = "institutional" }
+coverage = "2011-01-01/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-2423/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-2423/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-2423/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-2423/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-2423/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-2423/{datetime}id_/{url}"

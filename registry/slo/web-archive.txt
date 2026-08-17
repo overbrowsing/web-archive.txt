@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "slo"
+name = [ "Digitálne pramene – webharvesting a archivácia e-Born obsahu", { en = "Digital Resources – Web Harvesting and E-Born Content Archiving", alt = "DIP" } ]
+established = "2015"
+website = "https://webdepozit.sk"
+
+[archive.organisation]
+name = [ "Univerzitná knižnica v Bratislave", { en = "University Library in Bratislava", alt = "ULB" } ]
+type = "state_library"
+location = [ "SK" ]
+website = "https://ulib.sk"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://slov-lex.sk/pravne-predpisy/SK/ZZ/2022/265" } # legal deposit extended to the web in 2022 (Publications Act, No. 265/2022 Z.z., covers electronic periodicals/web portals); national-domain harvests run under a separate ERDF-funded project mandate
+coverage = "2015-01-01/.."
+domains = [ ".sk" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://search.webdepozit.sk/webarchiv/public/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://search.webdepozit.sk/webarchiv/public/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://search.webdepozit.sk/webarchiv/public/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://search.webdepozit.sk/webarchiv/public/{datetime}/{url}"
+no_toolbar = "https://search.webdepozit.sk/webarchiv/public/{datetime}if_/{url}"
+raw = "https://search.webdepozit.sk/webarchiv/public/{datetime}id_/{url}"

@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "lnb"
+name = [ "Latvijas tīmekļa vietņu arhīvs", { en = "Latvian Web Archive" } ]
+established = "2005"
+website = "https://webarhivs.lndb.lv"
+
+[archive.organisation]
+name = [ "Latvijas Nacionālā bibliotēka", { en = "National Library of Latvia", alt = "LNB" } ]
+type = "national_library"
+location = [ "LV" ]
+website = "https://lnb.gov.lv"
+
+[archive.scope]
+crawl = [ "national_domain", "selective" ] # inferred from "legal deposit copies" wording
+authority = { type = "legal_deposit", documentation = "https://likumi.lv/ta/id/136682-obligato-eksemplaru-likums" } # legal deposit extended to the web in 2006 (Obligāto eksemplāru likums)
+coverage = "2005-01-01/.."
+domains = [ ".lv" ]

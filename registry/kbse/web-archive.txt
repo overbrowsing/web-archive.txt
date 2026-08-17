@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "kbse"
+name = [ "Kulturarw3", { en = "The Web Archive of the National Library of Sweden" } ]
+established = "1997"
+website = "https://kb.se/hitta-och-bestall/hitta-i-samlingarna/kulturarw3.html"
+email = "kulturarw3@kb.se"
+
+[archive.organisation]
+name = [ "Kungliga biblioteket", { en = "National Library of Sweden", alt = "KB" } ]
+type = "national_library"
+location = [ "SE" ]
+website = "https://kb.se"
+
+[archive.scope]
+crawl = [ "national_domain", "bulk", "selective", "periodical" ]
+authority = { type = "legal_deposit", documentation = "https://riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2012492-om-pliktexemplar-av-elektroniskt_sfs-2012-492" } # Kulturarw3 predates the 2012 e-legal-deposit act; bulk harvesting began in 1997 under an earlier legal basis
+coverage = "1997-01-01/.."
+domains = [ ".se" ]

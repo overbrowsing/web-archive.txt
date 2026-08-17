@@ -1,0 +1,32 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "banq"
+name = [ "Programme de collecte de sites Web", { en = "BAnQ Web Archiving", alt = "BAnQ" } ]
+established = "2012"
+website = "https://www2.banq.qc.ca/collections/collections_patrimoniales/archives_web"
+email = "archivageweb@banq.qc.ca"
+
+[archive.organisation]
+name = [ "Bibliothèque et Archives nationales du Québec", { en = "National Library and Archives of Quebec", alt = "BAnQ" } ]
+type = "state_library"
+location = [ "CA-QC" ]
+website = "https://banq.qc.ca"
+
+[archive.scope]
+crawl = [ "regional_domain", "selective", "event" ]
+authority = { type = "institutional", documentation = "https://banq.qc.ca/notre-institution/bibliotheque-nationale/programme-de-collecte-de-sites-web" }
+coverage = "2012-01-01/.."
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://waext.banq.qc.ca/wayback/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://waext.banq.qc.ca/wayback/{url}", access = "online" }
+
+[replay]
+rewritten = "https://waext.banq.qc.ca/wayback/{datetime}/{url}"
+no_toolbar = "https://waext.banq.qc.ca/wayback/{datetime}x_/{url}"
+raw = "https://waext.banq.qc.ca/wayback/{datetime}id_/{url}"

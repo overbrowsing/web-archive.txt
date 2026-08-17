@@ -1,0 +1,34 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "ia"
+name = [ "Internet Archive", { alt = "Wayback Machine" } ]
+established = "1996"
+website = "https://web.archive.org"
+
+[archive.organisation]
+name = "Internet Archive"
+type = "nonprofit"
+location = [ "US" ]
+website = "https://archive.org"
+
+[archive.scope]
+crawl = [ "national_domain", "regional_domain", "bulk", "selective", "event", "thematic" ]
+authority = { type = "voluntary" }
+
+[api]
+documentation = "https://archive.org/help/wayback_api.php"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://web.archive.org/web/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://web.archive.org/web/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://web.archive.org/cdx/search/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://web.archive.org/web/{datetime}/{url}"
+no_toolbar = "https://web.archive.org/web/{datetime}if_/{url}"
+raw = "https://web.archive.org/web/{datetime}id_/{url}"

@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "euwa"
+name = "European Union Web Archive"
+established = "2013"
+website = "https://op.europa.eu/web/euwebarchive"
+email = "op-web-preservation@publications.europa.eu"
+
+[archive.organisation]
+name = [ "European Union", { alt = "EU" } ]
+type = "government"
+location = [ "EU" ]
+website = "https://op.europa.eu"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "institutional" }
+coverage = "1996-01-01/.." # Began capturing in 2013; backfilled coverage to 1996 by the Internet Archive
+domains = [ ".europa.eu" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/12090/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/12090/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/12090/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/12090/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/12090/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/12090/{datetime}id_/{url}"

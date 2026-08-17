@@ -1,0 +1,19 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "kbnl"
+name = [ "Webcollectie", { en = "KB Web Collection" } ]
+established = "2007"
+website = "https://kb.nl/onderzoeken-vinden/bijzondere-collecties/webcollectie"
+
+[archive.organisation]
+name = [ "Koninklijke Bibliotheek", { en = "National Library of the Netherlands", alt = "KB" } ]
+type = "national_library"
+location = [ "NL" ]
+website = "https://kb.nl"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "voluntary", documentation = "https://kb.nl/en/over-ons/expertises/webarchivering/juridische-aspecten" } # the Netherlands has no legal deposit law; KB collects by permission/opt-out approach
+coverage = "2007-01-01/.."

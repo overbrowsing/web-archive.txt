@@ -1,0 +1,34 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "fdlpwa"
+name = [ "Federal Depository Library Program Web Archive", { alt = "FDLP Web Archive" } ]
+established = "2011"
+website = "https://archive-it.org/home/FDLPwebarchive"
+
+[archive.organisation]
+name = [ "United States Government Publishing Office", { alt = "GPO" } ]
+type = "government"
+location = [ "US" ]
+website = "https://gpo.gov"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "public_record", documentation = "https://govinfo.gov/content/pkg/GOVPUB-GP3-PURL-gpo89707/pdf/GOVPUB-GP3-PURL-gpo89707.pdf" } # statutory FDLP mandate under Title 44, U.S.C. (chs. 17, 19, 41) for permanent public access to federal agency web content
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-593/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-593/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-593/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-593/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-593/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-593/{datetime}id_/{url}"

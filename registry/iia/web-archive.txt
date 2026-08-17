@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "iia"
+name = [ "הארכיון האינטרנטי הישראלי", { en = "Israeli Internet Archive", alt = "National Library of Israel Web Archive" } ]
+established = "2013"
+website = "https://web-archive.nli.org.il"
+
+[archive.organisation]
+name = [ "הספרייה הלאומית", { en = "The National Library of Israel", alt = "NLI" } ]
+type = "national_library"
+location = [ "IL" ]
+website = "https://nli.org.il"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://nevo.co.il/law_html/law00/157675.htm" } # legal deposit extended to the web in 2018 (National Library Regulations 5779-2018, enacted under s.23(4) of the National Library Law 5768-2007)
+coverage = "2013-09-01/.."
+domains = [ ".il" ]
+
+[api]
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://web-archive.nli.org.il/National_Library/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://web-archive.nli.org.il/National_Library/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://web-archive.nli.org.il/National_Library/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://web-archive.nli.org.il/National_Library/{datetime}/{url}"
+no_toolbar = "https://web-archive.nli.org.il/National_Library/{datetime}x_/{url}"
+raw = "https://web-archive.nli.org.il/National_Library/{datetime}id_/{url}"

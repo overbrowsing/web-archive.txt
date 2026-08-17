@@ -1,0 +1,24 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "warp"
+name = [ "インターネット資料収集保存事業", { en = "Web Archiving Project", alt = "WARP" } ]
+established = "2002"
+website = "https://warp.ndl.go.jp"
+email = "warp@ndl.go.jp"
+
+[archive.organisation]
+name = [ "国立国会図書館", { en = "National Diet Library, Japan", alt = "NDL" } ]
+type = "national_library"
+location = [ "JP" ]
+website = "https://ndl.go.jp"
+
+[archive.scope]
+crawl = [ "bulk", "selective", "event", "periodical" ]
+authority = { type = "public_record", documentation = "https://ndl.go.jp/en/aboutus/laws" } # National Diet Library Law, Art. 25-3 (2009 revision, in force Apr 2010) authorises comprehensive collection of public-institution sites without permission; non-government sites (events, periodicals) are archived selectively with publisher permission
+coverage = "2002-01-01/.."
+domains = [ ".jp" ]
+
+[replay]
+rewritten = "https://warp.ndl.go.jp/web/{datetime}/{url}"

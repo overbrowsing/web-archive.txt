@@ -1,0 +1,48 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "wax"
+name = [ "Harvard Library Web Archiving Collection Service", { alt = "WAX" } ]
+established = "2009"
+website = "https://preservation.library.harvard.edu/web-archives-collections"
+email = "digipres@HU.onmicrosoft.com"
+
+[archive.organisation]
+name = "Harvard Library"
+type = "university"
+location = [ "US-MA" ]
+website = "https://library.harvard.edu"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }
+coverage = "2009-01-01/.." # WAX operated 2009 until decommissioning in March 2018, when content and ongoing collecting moved to per-unit Harvard Archive-It accounts
+collections = [
+  { id = "938", name = "Americas, Europe, and Oceania Division at Harvard Library" },
+  { id = "940", name = "Harvard Graduate School of Design" },
+  { id = "1168", name = "Harvard Divinity School" },
+  { id = "1131", name = "Reischauer Institute of Japanese Studies at Harvard University" },
+  { id = "935", name = "Harvard University Archives" },
+  { id = "1167", name = "Kennedy School of Government" },
+  { id = "937", name = "Schlesinger Library" },
+  { id = "943", name = "Harvard Law School" },
+  { id = "719", name = "Harvard Business School" },
+  { id = "867", name = "Center for the History of Medicine, Countway Library" }
+]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-{collection}/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-{collection}/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-{collection}/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-{collection}/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-{collection}/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-{collection}/{datetime}id_/{url}"

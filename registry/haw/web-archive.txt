@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "haw"
+name = [ "Hrvatski arhiv weba", { en = "Croatian Web Archive", alt = "HAW" } ]
+established = "2004"
+website = "https://haw.nsk.hr"
+
+[archive.organisation]
+name = [ "Nacionalna i sveučilišna knjižnica u Zagrebu", { en = "National and University Library in Zagreb" } ]
+type = "national_library"
+location = [ "HR" ]
+website = "https://nsk.hr"
+
+[archive.scope]
+crawl = [ "selective", "national_domain", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://narodne-novine.nn.hr/clanci/sluzbeni/2020_06_66_1318.html" } # legal deposit extended to web in 2020 (Pravilnik o obveznom primjerku, NN 66/2020)
+coverage = "2004-01-01/.." # selective since 2004; national_domain/thematic since 2011
+domains = [ ".hr" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://haw.nsk.hr/wayback/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://haw.nsk.hr/wayback/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://haw.nsk.hr/wayback/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://haw.nsk.hr/wayback/{datetime}/{url}"
+no_toolbar = "https://haw.nsk.hr/wayback/{datetime}x_/{url}"
+raw = "https://haw.nsk.hr/wayback/{datetime}id_/{url}"

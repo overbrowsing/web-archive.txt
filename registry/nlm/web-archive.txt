@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nlm"
+name = "National Library of Medicine"
+established = "2002"
+website = "https://archive-it.org/organizations/350"
+email = "nlmwebcollecting@nlm.nih.gov"
+
+[archive.organisation]
+name = "National Library of Medicine"
+type = "national_library"
+location = [ "US" ]
+website = "https://nlm.nih.gov"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "institutional", documentation = "https://ncbi.nlm.nih.gov/books/NBK518732" }
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-350/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-350/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-350/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-350/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-350/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-350/{datetime}id_/{url}"

@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "uoe"
+name = "The University of Edinburgh, Heritage Collections"
+established = "2022"
+website = "https://library.ed.ac.uk/heritage-collections/collections-and-search/archives/digital-archives-and-preservation/web-archiving"
+email = "heritagecollections@ed.ac.uk"
+
+[archive.organisation]
+name = [ "The University of Edinburgh", { alt = "UoE" } ]
+type = "university"
+location = [ "GB" ]
+website = "https://ed.ac.uk"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional", documentation = "https://library.ed.ac.uk/sites/default/files/2025-03/WebArchivingStrategy_March2025.pdf" } # Web archiving forms part of The University of Edinburgh's wider Web Lifecycle Management; University content is predominantly captured and made accessible through the UK Web Archive (UKWA) under UK legal deposit law, with content outwith UKWA's remit captured locally by Heritage Collections and made available on request
+coverage = "2013-01-01/.." # Wellcome-funded Archive of Tomorrow project (a UK legal deposit project) began early 2022; institutional Web Archivist role appointed 2023. UKWA has crawled .ed.ac.uk under legal deposit since 2013
+domains = [ ".ed.ac.uk" ]

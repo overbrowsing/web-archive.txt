@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "fwa"
+name = [ "Suomalainen verkkoarkisto", { en = "Finnish Web Archive" } ]
+established = "2006"
+website = "https://verkkoarkisto.kansalliskirjasto.fi"
+email = "vapaakappale@helsinki.fi"
+
+[archive.organisation]
+name = [ "Kansalliskirjasto", { en = "National Library of Finland" } ]
+type = "national_library"
+location = [ "FI" ]
+website = "https://kansalliskirjasto.fi"
+
+[archive.scope]
+crawl = [ "national_domain", "regional_domain", "periodical", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://finlex.fi/fi/laki/ajantasa/2007/20071433" } # legal deposit extended to the web in 2007 (Laki kulttuuriaineistojen tallettamisesta ja säilyttämisestä 1433/2007)
+coverage = "2006-01-01/.."
+domains = [ ".fi", ".ax" ]

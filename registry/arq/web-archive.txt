@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "arq"
+name = "Arquivo.pt"
+established = "2007"
+website = "https://arquivo.pt"
+email = "contacto@arquivo.pt"
+
+[archive.organisation]
+name = [ "Fundação para a Computação Científica Nacional / Fundação para a Ciência e a Tecnologia", { en = "Foundation for National Scientific Computing / Foundation for Science and Technology", alt = "FCCN/FCT" } ]
+type = "research_institute"
+location = [ "PT" ]
+website = "https://fccn.pt"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "periodical", "event" ]
+authority = { type = "institutional" }
+coverage = "1996-01-01/.." # Began capturing in 2007; backfilled coverage to 1996 by the Internet Archive
+domains = [ ".pt" ]
+
+[api]
+documentation = "https://github.com/arquivo/pwa-technologies/wiki/APIs"
+rate_limit = true # 250 requests/60s (CDX API), 400 requests/60s (Memento API), per IP; exceeding the limit returns HTTP 429 and repeated breaches can permanently block the IP
+
+[api.memento]
+timemap = { endpoint = "https://arquivo.pt/wayback/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://arquivo.pt/wayback/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://arquivo.pt/wayback/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://arquivo.pt/noFrame/replay/{datetime}/{url}"
+no_toolbar = "https://arquivo.pt/noFrame/replay/{datetime}if_/{url}"
+raw = "https://arquivo.pt/noFrame/replay/{datetime}id_/{url}"

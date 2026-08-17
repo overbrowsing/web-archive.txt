@@ -1,0 +1,33 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "yudl"
+name = [ "York University Digital Library", { alt = "YUDL" } ]
+website = "https://digital.library.yorku.ca"
+email = "archives@yorku.ca"
+
+[archive.organisation]
+name = "York University Libraries"
+type = "university"
+location = [ "CA" ]
+website = "https://library.yorku.ca"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional", documentation = "https://crs.apps06.yorku.ca/" } # captures web content falling under York's Common Records Schedule, plus occasional crawls of York web properties as resources allow
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://wayback.library.yorku.ca/all/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://digital.library.yorku.ca/wayback{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.library.yorku.ca/all/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.library.yorku.ca/all/{datetime}/{url}"
+no_toolbar = "https://wayback.library.yorku.ca/all/{datetime}x_/{url}"
+raw = "https://wayback.library.yorku.ca/all/{datetime}id_/{url}"

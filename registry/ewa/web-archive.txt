@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "ewa"
+name = [ "Eesti Veebiarhiiv", { en = "Estonian Web Archive" } ]
+established = "2010"
+website = "https://veebiarhiiv.digar.ee"
+email = "veebiarhiiv@nlib.ee"
+
+[archive.organisation]
+name = [ "Eesti Rahvusraamatukogu", { en = "National Library of Estonia" } ]
+type = "national_library"
+location = [ "EE" ]
+website = "https://rara.ee"
+
+[archive.scope]
+crawl = [ "bulk", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://riigiteataja.ee/en/akt/514092016001" } # legal deposit extended to the web in 2006 (Sundeksemplariseadus, recast 2016/2017)
+coverage = "2010-01-01/.." # selective/event/thematic since 2010; bulk since 2015
+domains = [ ".ee" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://veebiarhiiv.digar.ee/a/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://veebiarhiiv.digar.ee/a/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://veebiarhiiv.digar.ee/a/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://veebiarhiiv.digar.ee/a/{datetime}/{url}"
+no_toolbar = "https://veebiarhiiv.digar.ee/a/{datetime}x_/{url}"
+raw = "https://veebiarhiiv.digar.ee/a/{datetime}id_/{url}"

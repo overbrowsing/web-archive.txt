@@ -1,0 +1,33 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nuk"
+name = [ "Spletni Arhiv NUK", { en = "NUK Web Archive" } ]
+established = "2007"
+website = "https://arhiv.nuk.uni-lj.si"
+email = "info@nuk.uni-lj.si"
+
+[archive.organisation]
+name = [ "Narodna in univerzitetna knjižnica", { en = "National and University Library of Slovenia", alt = "NUK" } ]
+type = "national_library"
+location = [ "SI" ]
+website = "https://nuk.uni-lj.si"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://pisrs.si/pregledNpb?idPredpisa=ZAKO3606&idPredpisaChng=ZAKO3606" } # legal deposit extended to the web in 2006 (Zakon o obveznem izvodu publikacij / ZOIPub)
+coverage = "2007-01-01/.."
+domains = [ ".si" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://arhiv.nuk.uni-lj.si/wayback/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://arhiv.nuk.uni-lj.si/wayback/{url}", access = "online" }
+
+[replay]
+rewritten = "https://arhiv.nuk.uni-lj.si/wayback/{datetime}/{url}"
+no_toolbar = "https://arhiv.nuk.uni-lj.si/wayback/{datetime}if_/{url}"
+raw = "https://arhiv.nuk.uni-lj.si/wayback/{datetime}id_/{url}"

@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "kbdk"
+name = [ "Netarkivet", { en = "Danish Web Archive" } ]
+established = "2005"
+website = "https://kb.dk/find-materiale/samlinger/netarkivet"
+email = "kb@kb.dk"
+
+[archive.organisation]
+name = [ "Det Kongelige Bibliotek", { en = "Royal Danish Library" } ]
+type = "national_library"
+location = [ "DK" ]
+website = "https://kb.dk"
+
+[archive.scope]
+crawl = [ "bulk", "selective", "event" ]
+authority = { type = "legal_deposit", documentation = "https://retsinformation.dk/eli/lta/2004/1439" } # legal deposit extended to the web in 2004 (Legal Deposit Act)
+coverage = "2005-01-01/.."

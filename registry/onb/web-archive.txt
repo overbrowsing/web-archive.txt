@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-08-14"
+
+[archive]
+id = "onb"
+name = [ "Webarchiv Österreich", { en = "Webarchive Austria" } ]
+established = "2008"
+website = "https://webarchiv.onb.ac.at"
+email = "webarchiv@onb.ac.at"
+
+[archive.organisation]
+name = [ "Österreichische Nationalbibliothek", { en = "Austrian National Library", alt = "ÖNB" } ]
+type = "national_library"
+location = [ "AT" ]
+website = "https://onb.ac.at"
+
+[archive.scope]
+crawl = [ "national_domain", "bulk", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10000719" } # legal deposit extended to the web in 2009 (Mediengesetz amendment)
+coverage = "2009-03-01/.." # .at domain crawls (annually since 2017, previously biennial); selected sites (daily, media/politics); national events (e.g. elections) harvested separately
+domains = [ ".at" ]
+
+[api]
+documentation = "https://webarchiv.onb.ac.at/webarchiv-api"
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchiv.onb.ac.at/web/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://webarchiv.onb.ac.at/web/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchiv.onb.ac.at/web/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchiv.onb.ac.at/web/{datetime}/{url}"
+no_toolbar = "https://webarchiv.onb.ac.at/web/{datetime}if_/{url}"
+raw = "https://webarchiv.onb.ac.at/web/{datetime}id_/{url}"

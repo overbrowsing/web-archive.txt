@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "webcz"
+name = [ "český webový archiv", { en = "Czech web archive", alt = "Webarchiv" } ]
+established = "2000"
+website = "https://webarchiv.cz"
+email = "webarchiv@nkp.cz"
+
+[archive.organisation]
+name = [ "Národní knihovna České republiky", { en = "National Library of the Czech Republic" } ]
+type = "national_library"
+location = [ "CZ" ]
+website = "https://nkp.cz"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "thematic", "event" ]
+authority = { type = "voluntary" } # Czech Legal Deposit Act doesn't cover online-born documents; Webarchiv harvests without a specific legal mandate, and Copyright Act prevents the National Library from making archived copies public without publisher agreement
+coverage = "2000-01-01/.."
+domains = [ ".cz" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://wayback.webarchiv.cz/wayback/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.webarchiv.cz/wayback/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.webarchiv.cz/wayback/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.webarchiv.cz/wayback/{datetime}/{url}"
+no_toolbar = "https://wayback.webarchiv.cz/wayback/{datetime}if_/{url}"
+raw = "https://wayback.webarchiv.cz/wayback/{datetime}id_/{url}"

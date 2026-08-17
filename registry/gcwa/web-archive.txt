@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "gcwa"
+name = [ "Government of Canada Web Archive", { alt = "Archives du Web du gouvernement du Canada" } ]
+established = "2005"
+website = "https://webarchiveweb.bac-lac.canada.ca"
+
+[archive.organisation]
+name = [ "Library and Archives Canada", { alt = "Bibliothèque et Archives Canada" } ]
+type = "national_library"
+location = [ "CA" ]
+website = "https://library-archives.canada.ca"
+
+[archive.scope]
+crawl = [ "selective", "national_domain", "event", "thematic" ]
+authority = { type = "public_record", documentation = "https://laws-lois.justice.gc.ca/eng/acts/l-7.7" } # Library and Archives of Canada Act, S.C. 2004, c. 11 (Royal Assent 22 April 2004)
+coverage = "2005-12-01/.."
+domains = [ ".gc.ca", ".ca" ]
+
+[api]
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://webarchiveweb.wayback.bac-lac.canada.ca/web/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchiveweb.wayback.bac-lac.canada.ca/web/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchiveweb.wayback.bac-lac.canada.ca/web/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchiveweb.wayback.bac-lac.canada.ca/web/{datetime}/{url}"
+no_toolbar = "https://webarchiveweb.wayback.bac-lac.canada.ca/web/{datetime}if_/{url}"
+raw = "https://webarchiveweb.wayback.bac-lac.canada.ca/web/{datetime}id_/{url}"

@@ -1,0 +1,19 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nlg"
+name = [ "Αρχείο Ελληνικού Ιστού", { en = "Greek Web Archive" } ]
+website = "https://webarchive.nlg.gr"
+email = "webarchive@nlg.gr"
+
+[archive.organisation]
+name = [ "Εθνική Βιβλιοθήκη της Ελλάδος", { en = "National Library of Greece", alt = "NLG" } ]
+type = "national_library"
+location = [ "GR" ]
+website = "https://nlg.gr"
+
+[archive.scope]
+crawl = [ "national_domain", "bulk", "selective" ]
+authority = { type = "institutional" } # NLG states it is "the only authorized organization in Greece for the creation and preservation of web archives"
+domains = [ ".gr" ]

@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nliwa"
+name = [ "National Library of Ireland Web Archive", { alt = "NLI Web Archive" } ]
+established = "2011"
+website = "https://nli.ie/collections/our-collections/web-archive"
+email = "info@nli.ie"
+
+[archive.organisation]
+name = [ "National Library of Ireland", { alt = "NLI" } ]
+type = "national_library"
+location = [ "IE" ]
+website = "https://nli.ie"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "institutional" }
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1444/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1444/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1444/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1444/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1444/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1444/{datetime}id_/{url}"

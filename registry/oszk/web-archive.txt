@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-14"
+
+[archive]
+id = "oszk"
+name = [ "MNMKK OSZK Webarchívum", { en = "National Széchényi Library Web Archive" } ]
+established = "2017"
+website = "https://webarchivum.oszk.hu"
+email = "webarchivum@oszk.hu"
+
+[archive.organisation]
+name = [ "Országos Széchényi Könyvtár", { en = "National Széchényi Library", alt = "OSZK" } ]
+type = "national_library"
+location = [ "HU" ]
+website = "https://oszk.hu"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "event", "thematic", "periodical" ]
+authority = { type = "legal_deposit", documentation = "https://njt.hu/jogszabaly/2020-626-20-22" } # legal deposit extended to the web in 2020 (1997/CXL Act amendment, s.59/A; detailed by Govt Decree 626/2020)
+coverage = "2017-01-01/.." # broad .hu domain harvest (biannual); thematic/genre harvests (quarterly); major news portals (daily, browser-based); event/institution/geographic harvests separate
+domains = [ ".hu" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "http://webadmin.oszk.hu/pywb/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "http://webadmin.oszk.hu/pywb/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "http://webadmin.oszk.hu/pywb/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "http://webadmin.oszk.hu/pywb/{datetime}/{url}"
+no_toolbar = "http://webadmin.oszk.hu/pywb/{datetime}x_/{url}"
+raw = "http://webadmin.oszk.hu/pywb/{datetime}id_/{url}"

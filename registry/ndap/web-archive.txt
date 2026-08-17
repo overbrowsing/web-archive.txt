@@ -1,0 +1,16 @@
+version = "0.1"
+last_updated = "2026-08-09"
+
+[archive]
+id = "ndap"
+name = [ "Naczelna Dyrekcja Archiwów Państwowych", { en = "Polish State Archives", alt = "NDAP" } ]
+website = "https://archiwa.gov.pl"
+
+[archive.organisation]
+name = [ "Naczelna Dyrekcja Archiwów Państwowych", { en = "Polish State Archives", alt = "NDAP" } ]
+type = "national_archive"
+location = [ "PL" ]
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }

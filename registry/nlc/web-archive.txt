@@ -1,0 +1,34 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nlc"
+name = [ "网络信息采集与保存", { en = "Web Information Collection and Preservation" } ]
+established = "2003"
+website = "https://nlc.cn"
+email = "webmaster@nlc.cn"
+
+[archive.organisation]
+name = [ "国家图书馆", { en = "National Library of China", alt = "NLC" } ]
+type = "national_library"
+location = [ "CN" ]
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "event", "thematic" ]
+authority = { type = "institutional" }
+domains = [ ".cn" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.nlc.cn/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nlc.cn/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.nlc.cn/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.nlc.cn/{datetime}/{url}"
+no_toolbar = "https://webarchive.nlc.cn/{datetime}if_/{url}"
+raw = "https://webarchive.nlc.cn/{datetime}id_/{url}"

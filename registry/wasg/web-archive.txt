@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "wasg"
+name = [ "Web Archive Singapore", { alt = "WebArchiveSG" } ]
+established = "2006"
+website = "https://eresources.nlb.gov.sg/webarchives"
+email = "ref@nlb.gov.sg"
+
+[archive.organisation]
+name = [ "National Library Board", { alt = "NLB" } ]
+type = "national_library"
+location = [ "SG" ]
+website = "https://nlb.gov.sg"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://sso.agc.gov.sg/Acts-Supp/30-2018/Published/20180813" } # legal deposit extended to the web in 2019 (National Library Board (Amendment) Act, published 2018); non-.sg sites still archived with owner permission
+coverage = "2006-01-01/.." # annual .sg-wide harvest (via MOU with SGNIC, the .sg registry); heritage-value selective harvest quarterly; thematic/event Special Collections (e.g. elections, National Day Parade) added as curated
+domains = [ ".sg" ]

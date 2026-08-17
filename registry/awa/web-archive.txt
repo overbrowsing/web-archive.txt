@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "awa"
+name = "Australian Web Archive"
+established = "1996"
+website = "https://webarchive.nla.gov.au"
+email = "iipc@nla.gov.au"
+
+[archive.organisation]
+name = [ "National Library of Australia", { alt = "NLA" } ]
+type = "national_library"
+location = [ "AU" ]
+website = "https://nla.gov.au"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "bulk", "event" ]
+authority = { type = "legal_deposit", documentation = "https://legislation.gov.au/C1968A00063/latest/text" } # legal deposit extended to the web in 2016 (Copyright Act 1968 amendment)
+coverage = "1996-01-01/.."
+domains = [ ".au" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.nla.gov.au/awa/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nla.gov.au/awa/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.nla.gov.au/awa/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.nla.gov.au/awa/{datetime}/{url}"
+no_toolbar = "https://webarchive.nla.gov.au/awa/{datetime}if_/{url}"
+raw = "https://webarchive.nla.gov.au/awa/{datetime}id_/{url}"

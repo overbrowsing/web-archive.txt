@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-09"
+
+[archive]
+id = "kbr"
+name = [ "KBR web archive", { en = "Royal Library of Belgium Web Archive", alt = "BelgicaWeb" } ]
+established = "2017"
+website = "https://kbr.be/projects/belgicaweb"
+email = "webarchive@kbr.be"
+
+[archive.organisation]
+name = [ "KBR", { en = "Royal Library of Belgium" } ]
+type = "national_library"
+location = [ "BE" ]
+website = "https://kbr.be"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "voluntary", documentation = "https://kbr.be/fr/depot-legal" } # Royal Decree (2016) permits KBR to collect mission-related websites; general web legal deposit is not yet in force
+coverage = "2017-01-01/.."

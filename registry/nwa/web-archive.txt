@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "nwa"
+name = [ "Nettarkivet", { en = "Norwegian Web Archive", alt = "Norsk Nettarkiv" } ]
+established = "2001"
+website = "https://nb.no/samlingen/nettarkivet"
+email = "nettarkivet@nb.no"
+
+[archive.organisation]
+name = [ "Nasjonalbiblioteket", { en = "National Library of Norway" } ]
+type = "national_library"
+location = [ "NO" ]
+website = "https://nb.no"
+
+[archive.scope]
+crawl = [ "national_domain", "event" ]
+authority = { type = "legal_deposit", documentation = "https://lovdata.no/dokument/NL/lov/1989-06-09-32" } # legal deposit extended to the web in 2016 (amendment LOV-2015-06-19-72, enabling full .no domain harvesting)
+coverage = "2001-01-01/.." # full-domain harvests paused 2008-2016 pending legal basis, subdomain/event harvesting continued throughout
+domains = [ ".no" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://nettarkivet.nb.no/search/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://nettarkivet.nb.no/search/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://nettarkivet.nb.no/search/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://nettarkivet.nb.no/search/{datetime}/{url}"
+raw = "https://nettarkivet.nb.no/search/{datetime}id_/{url}"

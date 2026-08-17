@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "oasis"
+name = [ "온라인 디지털지적문화유산의 아카이빙", { en = "Online Archiving & Searching Internet Sources", alt = "OASIS" } ]
+established = "2004"
+website = "https://nl.go.kr/oasis"
+email = "oasis2005@korea.kr"
+
+[archive.organisation]
+name = [ "국립중앙도서관", { en = "National Library of Korea" } ]
+type = "national_library"
+location = [ "KR" ]
+website = "https://nl.go.kr"
+
+[archive.scope]
+crawl = [ "national_domain", "bulk", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=46323" } # legal deposit extended to the web in 2004 (Library Act Art. 22, collection of online materials)
+domains = [ ".kr" ]

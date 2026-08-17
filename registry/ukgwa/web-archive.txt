@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "ukgwa"
+name = [ "UK Government Web Archive", { alt = "UKGWA" } ]
+established = "2003"
+website = "https://nationalarchives.gov.uk/webarchive"
+email = "webarchive@nationalarchives.gov.uk"
+
+[archive.organisation]
+name = [ "The National Archives", { alt = "TNA" } ]
+type = "national_archive"
+location = [ "GB" ]
+website = "https://nationalarchives.gov.uk"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "public_record", documentation = "https://legislation.gov.uk/ukpga/Eliz2/6-7/51/contents" } # Public Records Act 1958 (6 & 7 Eliz. 2 c. 51)
+coverage = "1996-01-01/.." # Began capturing in 2003; backfilled coverage to 1996 by the Internet Archive
+domains = [ ".gov.uk" ]
+
+[api]
+rate_limit = false # IP address whitelisting can be requested for high-volume access
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}"
+no_toolbar = "https://webarchive.nationalarchives.gov.uk/ukgwa/nobanner/{datetime}/{url}"
+raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"

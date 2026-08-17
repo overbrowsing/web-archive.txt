@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-14"
+
+[archive]
+id = "nzwa"
+name = "New Zealand Web Archive"
+established = "1999"
+website = "https://webarchive.natlib.govt.nz"
+email = "Web.Archive@dia.govt.nz"
+
+[archive.organisation]
+name = "National Library of New Zealand"
+type = "national_library"
+location = [ "NZ" ]
+website = "https://natlib.govt.nz"
+
+[archive.scope]
+crawl = [ "national_domain", "selective", "event", "thematic" ]
+authority = { type = "legal_deposit", documentation = "https://legislation.govt.nz/act/public/2003/0019/latest/whole.html" } # legal deposit extended to the web in 2006 (National Library Requirement (Electronic Documents) Notice, under National Library of NZ Act 2003 Part 4)
+coverage = "1999-01-01/.."
+domains = [ ".nz" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://ndhadeliver.natlib.govt.nz/webarchive/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://ndhadeliver.natlib.govt.nz/webarchive/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://ndhadeliver.natlib.govt.nz/webarchive/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://ndhadeliver.natlib.govt.nz/webarchive/{datetime}/{url}"
+no_toolbar = "https://ndhadeliver.natlib.govt.nz/webarchive/{datetime}if_/{url}"
+raw = "https://ndhadeliver.natlib.govt.nz/webarchive/{datetime}id_/{url}"

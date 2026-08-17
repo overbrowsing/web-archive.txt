@@ -1,0 +1,34 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "loc"
+name = "Library of Congress Web Archive"
+established = "2000"
+website = "https://loc.gov/web-archives/"
+email = "webcapture@loc.gov"
+
+[archive.organisation]
+name = "Library of Congress"
+type = "national_library"
+location = [ "US" ]
+website = "https://www.loc.gov"
+
+[archive.scope]
+crawl = [ "selective", "event", "thematic" ]
+authority = { type = "institutional", documentation = "https://www.loc.gov/programs/web-archiving/about-this-program/frequently-asked-questions/" }
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.loc.gov/all/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.loc.gov/all/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.loc.gov/all/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.loc.gov/all/{datetime}/{url}"
+no_toolbar = "https://webarchive.loc.gov/all/{datetime}if_/{url}"
+raw = "https://webarchive.loc.gov/all/{datetime}id_/{url}"

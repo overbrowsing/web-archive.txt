@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "cdlwa"
+name = [ "California Digital Library Web Archiving Service", { alt = "WAS" } ]
+established = "2003"
+website = "https://archive-it.org/organizations/1572"
+
+[archive.organisation]
+name = [ "California Digital Library", { alt = "CDL" } ]
+type = "university"
+location = [ "US-CA" ]
+website = "https://cdlib.org"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ]
+authority = { type = "institutional" }
+coverage = "2003-01-01/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1572/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1572/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1572/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1572/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1572/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1572/{datetime}id_/{url}"

@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "dnb"
+name = [ "DNB Webarchiv", { en = "German National Library Web Archive" } ]
+established = "2006"
+website = "https://webarchiv.dnb.de"
+email = "np-info@dnb.de"
+
+[archive.organisation]
+name = [ "Deutsche Nationalbibliothek", { en = "German National Library" } ]
+type = "national_library"
+location = [ "DE" ]
+website = "https://dnb.de"
+
+[archive.scope]
+crawl = [ "bulk", "selective", "thematic", "event" ]
+authority = { type = "legal_deposit", documentation = "https://gesetze-im-internet.de/dnbg/BJNR133800006.html" } # legal deposit extended to the web in 2006 (DNBG amendment)
+coverage = "2006-01-01/.."
+domains = [ ".de" ]

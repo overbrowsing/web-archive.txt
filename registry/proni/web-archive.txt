@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-17"
+
+[archive]
+id = "proni"
+name = "PRONI Web Archive"
+established = "2010"
+website = "https://webarchive.proni.gov.uk"
+email = "digitalpreservation@communities-ni.gov.uk"
+
+[archive.organisation]
+name = [ "The Public Record Office of Northern Ireland", { alt = "PRONI" } ]
+type = "state_archive"
+location = [ "GB-NIR" ]
+website = "https://proni.gov.uk"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "public_record", documentation = "https://legislation.gov.uk/apni/1923/20" } # Public Records Act (Northern Ireland) 1923 (c. 20)
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/11112/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/11112/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/11112/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/11112/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/11112/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/11112/{datetime}id_/{url}"
