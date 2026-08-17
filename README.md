@@ -92,7 +92,7 @@ A specification validator is provided to verify conformance of a *web-archive.tx
    1. Validate a target *web-archive.txt*:
 
       ```bash
-      # macOS/ Linux
+      # macOS / Linux
       ./validate path/to/web-archive.txt
 
       # Windows
