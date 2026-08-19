@@ -1,0 +1,31 @@
+version = "0.1"
+last_updated = "2026-08-19"
+
+[archive]
+id = "rhiz"
+name = [ "Webenact", { alt = "Rhizome Web Archive" } ]
+website = "http://webenact.rhizome.org"
+
+[archive.organisation]
+name = "Rhizome"
+type = "nonprofit"
+location = [ "US" ]
+website = "https://rhizome.org"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # captures artists' websites and net art/digital-culture properties, largely in support of Rhizome's ArtBase preservation programme
+authority = { type = "institutional" }
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "http://webenact.rhizome.org/all/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "http://webenact.rhizome.org/all/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "http://webenact.rhizome.org/all-cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "http://webenact.rhizome.org/all/{datetime}/{url}"
+raw = "http://webenact.rhizome.org/all/{datetime}id_/{url}"

@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-08-19"
+
+[archive]
+id = "cuhk"
+name = [ "CUHK Web Archive", { alt = "Chinese University of Hong Kong Web Archive" } ]
+established = "2021"
+website = "https://webarchive.lib.cuhk.edu.hk"
+email = "archives@cuhk.edu.hk"
+
+[archive.organisation]
+name = [ "CUHK University Archives", { alt = "CUHK Library" } ]
+type = "university"
+location = [ "HK" ]
+website = "https://www.lib.cuhk.edu.hk"
+
+[archive.scope]
+crawl = [ "selective", "periodical" ]
+authority = { type = "institutional" }
+coverage = "2020-01-01/.."
+domains = [ ".cuhk.edu.hk" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.lib.cuhk.edu.hk/public/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.lib.cuhk.edu.hk/public/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.lib.cuhk.edu.hk/public/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.lib.cuhk.edu.hk/public/{datetime}/{url}"
+no_toolbar = "https://webarchive.lib.cuhk.edu.hk/public/{datetime}if_/{url}"
+raw = "https://webarchive.lib.cuhk.edu.hk/public/{datetime}id_/{url}"

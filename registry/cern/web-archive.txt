@@ -1,0 +1,34 @@
+version = "0.1"
+last_updated = "2026-08-19"
+
+[archive]
+id = "cern"
+name = "CERN Web Archive"
+website = "https://archive-it.org/collections/10512"
+email = "archive.enquiries@cern.ch"
+
+[archive.organisation]
+name = [ "European Organization for Nuclear Research", { alt = "CERN" } ]
+type = "research_institute"
+location = [ "CH", "FR" ]
+website = "https://home.cern"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/10512/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/10512/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/10512/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/10512/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/10512/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/10512/{datetime}id_/{url}"

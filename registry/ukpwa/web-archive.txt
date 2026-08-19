@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-08-19"
+
+[archive]
+id = "ukpwa"
+name = "UK Parliament Web Archive"
+established = "2009"
+website = "https://webarchive.parliament.uk"
+
+[archive.organisation]
+name = [ "UK Parliamentary Archive", { alt = "UK Parliament" } ]
+type = "government"
+location = [ "GB" ]
+website = "https://archives.parliament.uk"
+
+[archive.scope]
+crawl = [ "selective", "periodical" ] # Lords/MPs' biographies, deposited papers, research briefings, Early Day Motions, Bills, and archived Parliamentary social media accounts
+authority = { type = "institutional" }
+coverage = "2009-01-01/.."
+domains = [ ".parliament.uk" ]
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.parliament.uk/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.parliament.uk/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.parliament.uk/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.parliament.uk/{datetime}/{url}"
+no_toolbar = "https://webarchive.parliament.uk/{datetime}if_/{url}"
+raw = "https://webarchive.parliament.uk/{datetime}id_/{url}"
