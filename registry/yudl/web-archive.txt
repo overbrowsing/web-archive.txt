@@ -15,7 +15,7 @@ website = "https://library.yorku.ca"
 
 [archive.scope]
 crawl = [ "selective" ]
-authority = { type = "institutional", documentation = "https://crs.apps06.yorku.ca/" } # captures web content falling under York's Common Records Schedule, plus occasional crawls of York web properties as resources allow
+authority = { type = "institutional", documentation = "https://crs.apps06.yorku.ca" } # captures web content falling under York's Common Records Schedule, plus occasional crawls of York web properties as resources allow
 
 [api]
 rate_limit = false
