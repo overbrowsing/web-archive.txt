@@ -18,7 +18,7 @@ website = "https://www.webarchive.org.uk"
 crawl = [ "national_domain", "selective", "event", "thematic", "periodical" ]
 authority = { type = "legal_deposit", documentation = "https://www.legislation.gov.uk/ukdsi/2013/9780111533703/contents" } # legal deposit extended to the web in 2013 (Legal Deposit Libraries (Non-Print Works) Regulations 2013, in force 6 Apr 2013)
 coverage = "2004-01-01/.." # selective since 2004; national_domain since 2013
-domains = [ ".uk" ]
+domains = [ ".uk", ".scot", ".wales", ".cymru", ".london" ]
 
 [api]
 rate_limit = false
