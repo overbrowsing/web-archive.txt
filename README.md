@@ -201,24 +201,16 @@ This registry **MAY** be used as an interim aggregator via the [GitHub Contents 
       done
       ```
 
-   3. Check which web archives with a CDX server API have archived a URL:
+   3. Check which web archives with a CDX server API have captured a URL, and show the number of captures:
 
       ```bash
       URL="https://example.com"
 
-      printf "%-8s %s\n" "archive id" "name (alt)"
-      for ARCHIVE in $(curl -sL https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/ | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
-        DESCRIPTOR=$(curl -sL "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$ARCHIVE/web-archive.txt")
-        ENDPOINT=$(echo "$DESCRIPTOR" | awk '/^\[api\.cdx\]/{f=1; next} /^\[/{f=0} f' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2)
-        [ -z "$ENDPOINT" ] && continue
-        NAME_LINE=$(echo "$DESCRIPTOR" | grep -m1 '^name =')
-        EN=$(echo "$NAME_LINE" | grep -o 'en = "[^"]*"' | cut -d'"' -f2)
-        ALT=$(echo "$NAME_LINE" | grep -o 'alt = "[^"]*"' | cut -d'"' -f2)
-        PRIMARY=$(echo "$NAME_LINE" | grep -o '"[^"]*"' | head -1 | tr -d '"')
-        NAME=${EN:-$PRIMARY}
-        PAREN=${ALT:-$([ -n "$EN" ] && echo "$PRIMARY")}
-        [ -n "$PAREN" ] && NAME="$NAME ($PAREN)"
-        curl -sL "${ENDPOINT/\{url\}/$URL}" | grep -q . && printf "%-8s %s\n" "$ARCHIVE" "$NAME"
+      echo -e "\nCaptures   Archive\n--------   -------"
+         for A in $(curl -sL https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/ | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
+         D=$(curl -sL "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$A/web-archive.txt"); E=$(echo "$D" | awk '/^\[api\.cdx\]/{f=1;next}/^\[/{f=0}f' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2); [ -z "$E" ] && continue
+         N=$(echo "$D" | grep -m1 '^name ='); P=$(echo "$N" | grep -o '"[^"]*"' | head -1 | tr -d '"'); EN=$(echo "$N" | grep -o 'en = "[^"]*"' | cut -d'"' -f2); ALT=$(echo "$N" | grep -o 'alt = "[^"]*"' | cut -d'"' -f2); N=${EN:-$P}; [ -n "$ALT" ] && N="$N ($ALT)"
+         C=$(curl -sL "${E/\{url\}/$URL}" | grep -c .); [ "$C" -gt 0 ] && printf "%-10s %s\n" "$C" "$N"
       done
       ```
 
