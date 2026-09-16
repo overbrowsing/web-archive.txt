@@ -17,5 +17,5 @@ website = "https://bnf.fr"
 [archive.scope]
 crawl = [ "national_domain", "bulk", "selective", "event", "thematic" ]
 authority = { type = "legal_deposit", documentation = "https://legifrance.gouv.fr/codes/article_lc/LEGIARTI000006845516" } # legal deposit extended to the web in 2006 (DADVSI law)
-coverage = "1996-01-01/.." # Began capturing in 2006; backfilled coverage to 1996 by the Internet Archive
+coverage = "1996-01-01/.." # Pilot crawls since 2002 (e.g. the 2002 elections collection); legal deposit mandate granted 2006 (DADVSI law); backfilled coverage to 1996 via the Internet Archive
 domains = [ ".fr" ]
