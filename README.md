@@ -11,13 +11,13 @@ Web archives exist as a constellation of “[siloed nodes](http://dlib.org/dlib/
 ## *web-archive.txt* Specification
 
 > [!NOTE]
-> **[→ *web-archive.txt* Specification v0.1⁠](/specification/v0.1/specification.md)**
+> **[→ *web-archive.txt* Specification v0.1⁠](specification/v0.1/specification.md)**
 
 *web-archive.txt* descriptors are written in [TOML](https://toml.io), prioritising human readability while remaining fully machine-parseable. Native support for comments allows web archives to include additional implementation context without affecting interoperability.
 
 ### Example *web-archive.txt*
 
-The following is a complete *web-archive.txt* descriptor for the [UK Government Web Archive (UKGWA)⁠](https://nationalarchives.gov.uk/webarchive) ([available here](/registry/ukgwa/web-archive.txt)):
+The following is a complete *web-archive.txt* descriptor for the [UK Government Web Archive (UKGWA)⁠](https://nationalarchives.gov.uk/webarchive) ([available here](registry/ukgwa/web-archive.txt)):
 
 ```toml
 version = "0.1"
@@ -111,7 +111,7 @@ A specification validator is provided to verify conformance of a *web-archive.tx
 
 ## Registry
 
-This repository maintains a bootstrap registry of *web-archive.txt* descriptors for web archives, including [IIPC member web archives](https://netpreserve.org/about-us/members/) and other organisations. Compiled from public information used to develop the specification, the registry is maintained in [`/registry`](/registry).
+This repository maintains a bootstrap registry of *web-archive.txt* descriptors for web archives, including [IIPC member web archives](https://netpreserve.org/about-us/members/) and other organisations. Compiled from public information used to develop the specification, the registry is maintained in [`registry/`](registry/).
 
 To be listed or update your information, publish a *web-archive.txt* descriptor at `/.well-known/web-archive.txt` on your domain, then submit a [pull request](https://github.com/overbrowsing/web-archive.txt/pulls).
 
