@@ -21,7 +21,7 @@ The following is a complete *web-archive.txt* descriptor for the [UK Government 
 
 ```toml
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-09-30"
 
 [archive]
 id = "ukgwa"
@@ -40,22 +40,26 @@ website = "https://nationalarchives.gov.uk"
 crawl = [ "selective", "event", "thematic" ]
 authority = { type = "public_record", documentation = "https://legislation.gov.uk/ukpga/Eliz2/6-7/51/contents" } # Public Records Act 1958 (6 & 7 Eliz. 2 c. 51)
 coverage = "1996-01-01/.." # Began capturing in 2003; backfilled coverage to 1996 by the Internet Archive
-domains = [ ".gov.uk" ]
+domains = [ ".gov.uk" ] # the eu-exit collection covers EU law sources (e.g. eur-lex.europa.eu) as they stood at the end of the Brexit transition period
+collections = [
+  { id = "ukgwa", name = "UK Government Web Archive", coverage = "1996-01-01/.." },
+  { id = "eu-exit", name = "EU Exit Web Archive", coverage = "2018-09-01/2020-12-31" } # earliest capture seen 2018-09-23; final EUR-Lex captures on 31 Dec 2020 (IP completion day)
+]
 
 [api]
 rate_limit = false # IP address whitelisting can be requested for high-volume access
 
 [api.memento]
-timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
-timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}", access = "online" }
+timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}", access = "online" }
 
 [api.cdx]
-query = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/cdx?url={url}", access = "online" }
+query = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/cdx?url={url}", access = "online" }
 
 [replay]
-rewritten = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}"
-no_toolbar = "https://webarchive.nationalarchives.gov.uk/ukgwa/nobanner/{datetime}/{url}"
-raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"
+rewritten = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}"
+no_toolbar = "https://webarchive.nationalarchives.gov.uk/{collection}/nobanner/{datetime}/{url}"
+raw = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}id_/{url}"
 ```
 
 ## Publishing a *web-archive.txt*
@@ -121,7 +125,9 @@ To be listed or update your information, publish a *web-archive.txt* descriptor 
 | 🇵🇹 [Arquivo.pt](registry/arq/web-archive.txt)                                                                    | Foundation for National Scientific Computing / Foundation for Science and Technology (FCCN/FCT) | Research Institute | arq    | ✓           |
 | 🇦🇺 [Australian Web Archive](registry/awa/web-archive.txt)                                                        | National Library of Australia                                                                   | National Library   | awa    | ✓           |
 | 🇨🇦 [BAnQ Web Archiving](registry/banq/web-archive.txt)                                                           | Bibliothèque et Archives nationales du Québec                                                   | State Library      | banq   | ✓           |
+| 🇩🇪 [Bavarian State Library Web Archive (BSB)](registry/bsb/web-archive.txt)                                      | Bavarian State Library                                                                          | State Library      | bsb    |             |
 | 🇪🇬 [BibAlex](registry/ba/web-archive.txt)                                                                        | Bibliotheca Alexandrina                                                                         | National Library   | ba     | ✓           |
+| 🇮🇹 [BNCF Web Archive](registry/bncf/web-archive.txt)                                                             | National Central Library of Florence                                                            | National Library   | bncf   |             |
 | 🇫🇷 [BnF Web Archives (BnF)](registry/bnf/web-archive.txt)                                                        | Bibliothèque nationale de France                                                                | National Library   | bnf    | ✓           |
 | 🇺🇸 [California Digital Library Web Archiving Service (WAS)](registry/cdlwa/web-archive.txt)                      | California Digital Library                                                                      | University         | cdlwa  | ✓           |
 | 🇨🇭 [CERN Web Archive](registry/cern/web-archive.txt)                                                             | European Organization for Nuclear Research (CERN)                                               | Research Institute | cern   |             |
@@ -158,17 +164,20 @@ To be listed or update your information, publish a *web-archive.txt* descriptor 
 | 🇳🇱 [Netherlands Institute for Sound and Vision (Beeld en Geluid)](registry/nisv/web-archive.txt)                 | Netherlands Institute for Sound and Vision                                                      | Nonprofit          | nisv   | ✓           |
 | 🇳🇿 [New Zealand Web Archive](registry/nzwa/web-archive.txt)                                                      | National Library of New Zealand                                                                 | National Library   | nzwa   | ✓           |
 | 🇳🇴 [Norwegian Web Archive (Nettarkivet)](registry/nwa/web-archive.txt)                                           | National Library of Norway                                                                      | National Library   | nwa    | ✓           |
+| 🇹🇼 [NTU Web Archiving System (NTUWAS)](registry/ntuwas/web-archive.txt)                                          | National Taiwan University Library                                                              | University         | ntuwas |             |
 | 🇸🇮 [NUK Web Archive (Spletni Arhiv NUK)](registry/nuk/web-archive.txt)                                           | National and University Library of Slovenia                                                     | National Library   | nuk    | ✓           |
 | 🇰🇷 [Online Archiving & Searching Internet Sources (OASIS)](registry/oasis/web-archive.txt)                       | National Library of Korea                                                                       | National Library   | oasis  | ✓           |
 | 🇵🇱 [Polish State Archives (NDAP)](registry/ndap/web-archive.txt)                                                 | Polish State Archives                                                                           | National Archive   | ndap   | ✓           |
 | 🇬🇧 [PRONI Web Archive](registry/proni/web-archive.txt)                                                           | The Public Record Office of Northern Ireland                                                    | State Archive      | proni  | ✓           |
 | 🇧🇪 [Royal Library of Belgium Web Archive (BelgicaWeb)](registry/kbr/web-archive.txt)                             | Royal Library of Belgium                                                                        | National Library   | kbr    | ✓           |
+| 🇷🇺 [Russian National Digital Archive (ruarxive)](registry/rnda/web-archive.txt)                                  | Infoculture                                                                                     | Nonprofit          | rnda   |             |
 | 🇺🇸 [Smithsonian Institution Archives](registry/sia/web-archive.txt)                                              | Smithsonian Libraries and Archives                                                              | Research Institute | sia    | ✓           |
 | 🇪🇸 [Spanish Web Archive (Archivo de la Web Española)](registry/swa/web-archive.txt)                              | National Library of Spain                                                                       | National Library   | swa    | ✓           |
 | 🇺🇸 [Stanford Web Archive Portal (SWAP)](registry/swap/web-archive.txt)                                           | Stanford University Libraries                                                                   | University         | swap   | ✓           |
 | 🇬🇧 [UK Government Web Archive (UKGWA)](registry/ukgwa/web-archive.txt)                                           | The National Archives                                                                           | National Archive   | ukgwa  | ✓           |
 | 🇬🇧 [UK Parliament Web Archive](registry/ukpwa/web-archive.txt)                                                   | UK Parliamentary Archive                                                                        | Government         | ukpwa  |             |
 | 🇬🇧 [UK Web Archive (UKWA)](registry/ukwa/web-archive.txt)                                                        | UK Legal Deposit Libraries                                                                      | National Library   | ukwa   | ✓           |
+| 🇺🇳 [UNESCO Web Archive](registry/unesco/web-archive.txt)                                                         | United Nations Educational, Scientific and Cultural Organization                                | Government         | unesco |             |
 | 🏴󠁧󠁢󠁳󠁣󠁴󠁿 [The University of Edinburgh, Heritage Collections](registry/uoe/web-archive.txt)                             | The University of Edinburgh                                                                     | University         | uoe    |             |
 | 🇺🇸 [UNT Web Archives (UNTWA)](registry/untweb/web-archive.txt)                                                   | University of North Texas Libraries                                                             | University         | untweb | ✓           |
 | 🇸🇪 [The Web Archive of the National Library of Sweden (Kulturarw3)](registry/kbse/web-archive.txt)               | National Library of Sweden                                                                      | National Library   | kbse   | ✓           |
@@ -178,7 +187,8 @@ To be listed or update your information, publish a *web-archive.txt* descriptor 
 | 🇯🇵 [Web Archiving Project (WARP)](registry/warp/web-archive.txt)                                                 | National Diet Library, Japan                                                                    | National Library   | warp   | ✓           |
 | 🇨🇳 [Web Information Collection and Preservation (网络信息采集与保存)](registry/nlc/web-archive.txt)                 | National Library of China                                                                       | National Library   | nlc    | ✓           |
 | 🇦🇹 [Webarchive Austria (Webarchiv Österreich)](registry/onb/web-archive.txt)                                     | Austrian National Library                                                                       | National Library   | onb    | ✓           |
-| 🇺🇸 [Webenact (Rhizome Web Archive)](registry/rhiz/web-archive.txt)                                               | Rhizome                                                                                          | Nonprofit          | rhiz   |             |
+| 🇺🇸 [Webenact (Rhizome Web Archive)](registry/rhiz/web-archive.txt)                                               | Rhizome                                                                                         | Nonprofit          | rhiz   |             |
+| 🇺🇳 [World Bank Group Web Archives](registry/wbg/web-archive.txt)                                                 | World Bank Group                                                                                | Government         | wbg    |             |
 | 🇨🇦 [York University Digital Library (YUDL)](registry/yudl/web-archive.txt)                                       | York University Libraries                                                                       | University         | yudl   | ✓           |
 
 ### Using the Registry
