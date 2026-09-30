@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-09-30"
 
 [archive]
 id = "ba"
@@ -18,3 +18,10 @@ website = "https://bibalex.org"
 crawl = [ "bulk" ]
 authority = { type = "institutional", documentation = "https://bibalex.org/en/project/details?documentid=283" }
 coverage = "1996-01-01/2006-12-31" # Began capturing in 2002; backfilled coverage to 1996 by the Internet Archive
+
+[api.memento]
+timemap = { endpoint = "http://web.archive.bibalex.org/web/timemap/link/{url}", access = "offline" }
+timegate = { endpoint = "http://web.archive.bibalex.org/web/{url}", access = "offline" }
+
+[replay]
+rewritten = "http://web.archive.bibalex.org/web/{datetime}/{url}"
