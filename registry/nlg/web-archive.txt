@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-09-30"
 
 [archive]
 id = "nlg"
@@ -16,4 +16,5 @@ website = "https://nlg.gr"
 [archive.scope]
 crawl = [ "national_domain", "bulk", "selective" ]
 authority = { type = "institutional" } # NLG states it is "the only authorized organization in Greece for the creation and preservation of web archives"
+coverage = "1996-01-01/.." # portal launched 2022 with the Internet Archive; NLG states it holds snapshots of .gr sites "from 1996 up to the present day"
 domains = [ ".gr" ]
