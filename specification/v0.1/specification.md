@@ -162,32 +162,21 @@ The following declares collection boundaries, crawl modalities, strategies and t
 crawl = [ "selective", "event", "thematic" ]
 authority = { type = "public_record", documentation = "https://legislation.gov.uk/ukpga/Eliz2/6-7/51/contents" } # Public Records Act 1958 (6 & 7 Eliz. 2 c. 51)
 coverage = "1996-01-01/.." # Began capturing in 2003; backfilled coverage to 1996 by the Internet Archive
-domains = [ ".gov.uk" ]
-
+domains = [ ".gov.uk" ] # the eu-exit collection covers EU law sources (e.g. eur-lex.europa.eu) as they stood at the end of the Brexit transition period
+collections = [
+  { id = "ukgwa", name = "UK Government Web Archive", coverage = "1996-01-01/.." },
+  { id = "eu-exit", name = "EU Exit Web Archive", coverage = "2018-09-01/2020-12-31" } # earliest capture seen 2018-09-23; final EUR-Lex captures on 31 Dec 2020 (IP completion day)
+]
 ```
 
 ```toml
-# 'archive.scope' declaration for the National Archives and Records Administration (NARA) Web Archive 
+# 'archive.scope' declaration for Nettarkivet (Norwegian Web Archive)
 
 [archive.scope]
-crawl = [ "selective", "event", "periodical" ] # Congressional harvests recur biennially at end of term; White House/Federal-agency harvests are one-off
-authority = { type = "public_record", documentation = "https://archives.gov/records-mgmt/policy/web-records" } # Federal Records Act and Presidential Records Act (44 U.S.C.); Congressional harvest run separately by NARA's Center for Legislative Archives
-coverage = "2004-01-20/.."
-domains = [ ".gov", ".mil" ] # Congressional harvests cover .senate.gov/.house.gov; 2004 harvest covered general Federal agency sites
-collections = [
-  { id = "peth04", name = "Presidential Term (2004)" },
-  { id = "congress109th", name = "109th Congress (2006)" },
-  { id = "congress110th", name = "110th Congress (2008)" },
-  { id = "congress111th", name = "111th Congress (2010)" },
-  { id = "congress112th", name = "112th Congress (2012)" },
-  { id = "congress113th", name = "113th Congress (2014)" },
-  { id = "congress114th", name = "114th Congress (2016)" },
-  { id = "congress115th", name = "115th Congress (2018)" },
-  { id = "congress116th", name = "116th Congress (2020)" },
-  { id = "congress117th", name = "117th Congress (2022)" },
-  { id = "congress118th", name = "118th Congress (2024)" },
-  { id = "peot24", name = "Biden White House (2025)" }
-]
+crawl = [ "national_domain", "event" ]
+authority = { type = "legal_deposit", documentation = "https://lovdata.no/dokument/NL/lov/1989-06-09-32" } # legal deposit extended to the web in 2016 (amendment LOV-2015-06-19-72, enabling full .no domain harvesting)
+coverage = "2001-01-01/.." # full-domain harvests paused 2008-2016 pending legal basis, subdomain/event harvesting continued throughout
+domains = [ ".no" ]
 ```
 
 <p align="right"><a href="#top">Back to top ↑</a></p>
@@ -261,8 +250,8 @@ The following declares support for Memento Protocol interfaces, including TimeMa
 # 'api.memento' declaration for the UK Government Web Archive (UKGWA) 
 
 [api.memento]
-timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
-timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}", access = "online" }
+timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}", access = "online" }
 ```
 
 ```toml
@@ -302,7 +291,7 @@ The following declares support for a CDX-based server API, including endpoint co
 # 'api.cdx' declaration for the UK Government Web Archive (UKGWA) 
 
 [api.cdx]
-query = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/cdx?url={url}", access = "online" }
+query = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/cdx?url={url}", access = "online" }
 ```
 
 ```toml
@@ -343,18 +332,17 @@ The following declares URI templates and state modifiers used to render archived
 # 'replay' declaration for the UK Government Web Archive (UKGWA) 
 
 [replay]
-rewritten = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}"
-no_toolbar = "https://webarchive.nationalarchives.gov.uk/ukgwa/nobanner/{datetime}/{url}"
-raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"
+rewritten = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}"
+no_toolbar = "https://webarchive.nationalarchives.gov.uk/{collection}/nobanner/{datetime}/{url}"
+raw = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}id_/{url}"
 ```
 
 ```toml
-# 'replay' declaration for the National Archives and Records Administration (NARA) Web Archive 
+# 'replay' declaration for Nettarkivet (Norwegian Web Archive)
 
 [replay]
-rewritten = "https://webharvest.gov/{collection}/{datetime}/{url}"
-no_toolbar = "https://webharvest.gov/{collection}/{datetime}if_/{url}"
-raw = "https://webharvest.gov/{collection}/{datetime}id_/{url}"
+rewritten = "https://nettarkivet.nb.no/search/{datetime}/{url}"
+raw = "https://nettarkivet.nb.no/search/{datetime}id_/{url}"
 ```
 
 <p align="right"><a href="#top">Back to top ↑</a></p>
@@ -367,7 +355,7 @@ The following example illustrates a complete valid *web-archive.txt* manifest fo
 # Complete web-archive.txt for the UK Government Web Archive (UKGWA)
 
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-09-30"
 
 [archive]
 id = "ukgwa"
@@ -386,22 +374,26 @@ website = "https://nationalarchives.gov.uk"
 crawl = [ "selective", "event", "thematic" ]
 authority = { type = "public_record", documentation = "https://legislation.gov.uk/ukpga/Eliz2/6-7/51/contents" } # Public Records Act 1958 (6 & 7 Eliz. 2 c. 51)
 coverage = "1996-01-01/.." # Began capturing in 2003; backfilled coverage to 1996 by the Internet Archive
-domains = [ ".gov.uk" ]
+domains = [ ".gov.uk" ] # the eu-exit collection covers EU law sources (e.g. eur-lex.europa.eu) as they stood at the end of the Brexit transition period
+collections = [
+  { id = "ukgwa", name = "UK Government Web Archive", coverage = "1996-01-01/.." },
+  { id = "eu-exit", name = "EU Exit Web Archive", coverage = "2018-09-01/2020-12-31" } # earliest capture seen 2018-09-23; final EUR-Lex captures on 31 Dec 2020 (IP completion day)
+]
 
 [api]
 rate_limit = false # IP address whitelisting can be requested for high-volume access
 
 [api.memento]
-timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
-timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}", access = "online" }
+timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}", access = "online" }
 
 [api.cdx]
-query = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/cdx?url={url}", access = "online" }
+query = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/cdx?url={url}", access = "online" }
 
 [replay]
-rewritten = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}"
-no_toolbar = "https://webarchive.nationalarchives.gov.uk/ukgwa/nobanner/{datetime}/{url}"
-raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"
+rewritten = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}"
+no_toolbar = "https://webarchive.nationalarchives.gov.uk/{collection}/nobanner/{datetime}/{url}"
+raw = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}id_/{url}"
 ```
 
 The following example illustrates a complete valid *web-archive.txt* manifest for [Nettarkivet](https://nb.no/samlingen/nettarkivet/):
