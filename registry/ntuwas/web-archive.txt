@@ -1,0 +1,30 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "ntuwas"
+name = [ "臺灣網站典藏庫", { en = "NTU Web Archiving System", alt = "NTUWAS" } ]
+established = "2007"
+website = "https://webarchive.lib.ntu.edu.tw"
+email = "libsys@ntu.edu.tw"
+
+[archive.organisation]
+name = [ "國立臺灣大學圖書館", { en = "National Taiwan University Library", alt = "NTU Library" } ]
+type = "university"
+location = [ "TW" ]
+website = "https://www.lib.ntu.edu.tw"
+
+[archive.scope]
+crawl = [ "selective", "thematic", "event" ] # ~2,350 sites across government, political, NGO, academic, cultural and event/issue collections
+authority = { type = "institutional" }
+coverage = "2007-01-01/.."
+domains = [ ".tw" ]
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.lib.ntu.edu.tw/archive/wayback/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.lib.ntu.edu.tw/archive/wayback/{url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.lib.ntu.edu.tw/archive/wayback/{datetime}/{url}"
+no_toolbar = "https://webarchive.lib.ntu.edu.tw/archive/wayback/{datetime}if_/{url}"
+raw = "https://webarchive.lib.ntu.edu.tw/archive/wayback/{datetime}id_/{url}"

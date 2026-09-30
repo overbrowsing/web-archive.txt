@@ -1,0 +1,26 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "bsb"
+name = [ "Webarchiv der Bayerischen Staatsbibliothek", { en = "Bavarian State Library Web Archive", alt = "BSB" } ]
+established = "2010"
+website = "https://langzeitarchivierung.bib-bvb.de/wayback/"
+
+[archive.organisation]
+name = [ "Bayerische Staatsbibliothek", { en = "Bavarian State Library", alt = "BSB" } ]
+type = "state_library"
+location = [ "DE", "DE-BY" ]
+website = "https://www.bsb-muenchen.de"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # official publications of Bavarian state institutions, plus Bavarica and BSB collecting strengths (ancient studies, history, music, Eastern Europe); ~1,500 sites harvested twice yearly (2017)
+authority = { type = "institutional" } # 2008 decree on electronic publications of Bavarian state agencies; other sites archived with publisher permission
+coverage = "2010-01-01/.."
+
+[api.memento]
+timemap = { endpoint = "https://langzeitarchivierung.bib-bvb.de/wayback/timemap/link/{url}", access = "local" }
+timegate = { endpoint = "https://langzeitarchivierung.bib-bvb.de/wayback/{url}", access = "local" }
+
+[replay]
+rewritten = "https://langzeitarchivierung.bib-bvb.de/wayback/{datetime}/{url}"

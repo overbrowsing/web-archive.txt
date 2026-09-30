@@ -1,0 +1,31 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "unesco"
+name = "UNESCO Web Archive"
+website = "https://webarchive.unesco.org" # hosted by the Internet Archive (Wayback)
+
+[archive.organisation]
+name = [ "United Nations Educational, Scientific and Cultural Organization", { alt = "UNESCO" } ]
+type = "government"
+location = [ "FR" ]
+website = "https://www.unesco.org"
+
+[archive.scope]
+crawl = [ "selective" ] # UNESCO's own websites and documents
+authority = { type = "institutional" }
+domains = [ ".unesco.org" ]
+
+[api]
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://webarchive.unesco.org/web/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.unesco.org/web/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://webarchive.unesco.org/cdx/search/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://webarchive.unesco.org/web/{datetime}/{url}"

@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "wbg"
+name = "World Bank Group Web Archives"
+established = "2007"
+website = "https://www.worldbank.org/en/archive/webarchives"
+email = "webarchives@worldbank.org"
+
+[archive.organisation]
+name = [ "World Bank Group", { alt = "WBG" } ]
+type = "government" # intergovernmental organisation, headquartered in Washington, D.C.
+location = [ "US" ]
+website = "https://www.worldbank.org/en/archive/home"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }
+coverage = "2007-01-01/.."
+domains = [ ".worldbank.org" ]

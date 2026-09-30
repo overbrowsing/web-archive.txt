@@ -1,0 +1,19 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "rnda"
+name = [ "Национальный цифровой архив", { en = "Russian National Digital Archive", alt = "ruarxive" } ]
+established = "2022"
+website = "https://ruarxive.org" # No replay, CDX or Memento interface. Archived WARCs and files are published for bulk download at https://cdn.ruarxive.org/public/
+email = "infoculture@infoculture.ru"
+
+[archive.organisation]
+name = [ "Инфокультура", { en = "Infoculture" } ]
+type = "nonprofit"
+location = [ "RU" ]
+website = "https://infoculture.ru"
+
+[archive.scope]
+crawl = [ "selective", "event" ] # websites, social media and Telegram channels of high public value at risk of deletion or blocking (e.g. Memorial, Echo of Moscow); some collections also deposited on archive.org and hubofdata.ru
+authority = { type = "voluntary" }

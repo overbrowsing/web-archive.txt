@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "bncf"
+name = [ "BNCF Web Archive", { alt = "BNCF" } ]
+established = "2018"
+website = "https://archive-it.org/home/BNCF" # hosted on Archive-It (organisation 1284)
+email = "bnc-fi.magazzinidigitali@cultura.gov.it"
+
+[archive.organisation]
+name = [ "Biblioteca Nazionale Centrale di Firenze", { en = "National Central Library of Florence", alt = "BNCF" } ]
+type = "national_library"
+location = [ "IT" ]
+website = "https://bncf.cultura.gov.it"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # 11 thematic collections (research, cultural institutions, Ministry of Culture, news, local history, etc.), harvested about twice a year
+authority = { type = "voluntary", documentation = "https://bncf.cultura.gov.it/en/services/web-archiving/" } # Law 106/2004 and DPR 252/2006 cover network documents, but digital deposit is not yet mandatory; site owners opt in and choose public or on-site-only access
+coverage = "2018-01-01/.."
+domains = [ ".it" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1284/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1284/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1284/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1284/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1284/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1284/{datetime}id_/{url}"
