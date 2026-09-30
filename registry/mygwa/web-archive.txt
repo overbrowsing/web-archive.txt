@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "mygwa"
+name = [ "Malaysian Government Web Archive", { alt = "MyGWA" } ]
+established = "2017"
+website = "https://mygwa.arkib.gov.my" # search, subject and A-Z browsing over WARC captures; no public Wayback, CDX or Memento endpoint found
+
+[archive.organisation]
+name = [ "Arkib Negara Malaysia", { en = "National Archives of Malaysia" } ]
+type = "national_archive"
+location = [ "MY" ]
+website = "https://www.arkib.gov.my"
+
+[archive.scope]
+crawl = [ "selective", "periodical" ] # Malaysian public sector websites, crawled on a schedule
+authority = { type = "public_record" } # National Archives Act 2003 (Act 629)
+coverage = "2017-01-01/.."
+domains = [ ".gov.my" ]

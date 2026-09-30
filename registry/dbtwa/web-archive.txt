@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-09-30"
+
+[archive]
+id = "dbtwa"
+name = [ "Webarchiv des Deutschen Bundestages", { en = "German Bundestag Web Archive" } ]
+established = "2005"
+website = "https://webarchiv.bundestag.de" # offline since 17 April 2026 to avoid possible copyright infringement (images embedded in texts); not deleted, and content remains available free of charge on request from the Parliamentary Archive
+email = "parlamentsarchiv@bundestag.de"
+
+[archive.organisation]
+name = [ "Deutscher Bundestag", { en = "German Bundestag" } ]
+type = "government"
+location = [ "DE" ]
+website = "https://www.bundestag.de"
+
+[archive.scope]
+crawl = [ "periodical", "event" ] # snapshots of www.bundestag.de and other Bundestag web presences at regular intervals or for particular events
+authority = { type = "institutional" }
+coverage = "2005-01-01/2016-12-31"
+domains = [ ".bundestag.de" ]
