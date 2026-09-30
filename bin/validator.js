@@ -13,9 +13,11 @@ if (!fetch) process.exit(1);
 const args = process.argv.slice(2);
 let file = 'web-archive.txt';
 let versionOverride = null;
+let collectionOverride = null;
 
 for (const a of args) {
-  if (a.startsWith('--')) versionOverride = a.slice(2);
+  if (a.startsWith('--collection=')) collectionOverride = a.slice('--collection='.length);
+  else if (a.startsWith('--')) versionOverride = a.slice(2);
   else file = a;
 }
 
@@ -439,14 +441,18 @@ const CHECK_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (compatible; web-archive-txt; +https://github.com/overbrowsing/web-archive.txt)',
 };
 
-const probeUrl = url => url.replace(/\{[^}]+\}/g, 'x');
+// {collection} is filled with a declared collection id; other placeholders with a dummy value
+const probeUrl = (url, collection) =>
+  url.replace(/\{collection\}/g, collection ?? 'x').replace(/\{[^}]+\}/g, 'x');
 
-async function check(url, access) {
+async function check(url, access, collection) {
   if (!url) return ['error', 'no endpoint URL'];
   if (access === 'local' || access === 'offline') return ['skip', null];
+  if (url.includes('{collection}') && !collection)
+    return ['error', 'endpoint uses {collection} but archive.scope.collections is not declared'];
 
   try {
-    const res = await fetch(probeUrl(url), { headers: CHECK_HEADERS });
+    const res = await fetch(probeUrl(url, collection), { headers: CHECK_HEADERS });
     if (res.ok || res.status === 404) return ['ok', null];
     return ['error', `HTTP ${res.status} ${res.statusText}`.trim()];
   } catch (e) {
@@ -525,11 +531,22 @@ function formatName(nameField) {
   } else {
     UI.log('info', 'Checking API endpoints...');
 
+    // Pick the collection used to test {collection} endpoints: --collection=<id>, else the first declared
+    const collectionIds = (archive?.archive?.scope?.collections || []).map(c => c.id);
+    let collection = collectionIds[0] || null;
+    if (collectionOverride) {
+      if (!collectionIds.includes(collectionOverride))
+        UI.log('issue', `Collection "${collectionOverride}" is not declared in archive.scope.collections; testing it anyway`);
+      collection = collectionOverride;
+    }
+
     for (const [label, url, access] of endpoints) {
-      const [status, detail] = await check(url, access);
+      const usesCollection = url.includes('{collection}');
+      const [status, detail] = await check(url, access, usesCollection ? collection : null);
 
       console.log(`    ${label}`);
       console.log(`    ├─ Endpoint: ${url}`);
+      if (usesCollection && collection) console.log(`    ├─ Collection: ${collection}`);
 
       const msg =
         status === 'ok'
