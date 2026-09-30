@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-09-30"
 
 [archive]
 id = "ukgwa"
@@ -18,19 +18,23 @@ website = "https://nationalarchives.gov.uk"
 crawl = [ "selective", "event", "thematic" ]
 authority = { type = "public_record", documentation = "https://legislation.gov.uk/ukpga/Eliz2/6-7/51/contents" } # Public Records Act 1958 (6 & 7 Eliz. 2 c. 51)
 coverage = "1996-01-01/.." # Began capturing in 2003; backfilled coverage to 1996 by the Internet Archive
-domains = [ ".gov.uk" ]
+domains = [ ".gov.uk" ] # the eu-exit collection covers EU law sources (e.g. eur-lex.europa.eu) as they stood at the end of the Brexit transition period
+collections = [
+  { id = "ukgwa", name = "UK Government Web Archive", coverage = "1996-01-01/.." },
+  { id = "eu-exit", name = "EU Exit Web Archive", coverage = "2018-09-01/2020-12-31" } # earliest capture seen 2018-09-23; final EUR-Lex captures on 31 Dec 2020 (IP completion day)
+]
 
 [api]
 rate_limit = false # IP address whitelisting can be requested for high-volume access
 
 [api.memento]
-timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/timemap/json/{url}", access = "online" }
-timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}", access = "online" }
+timemap = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}", access = "online" }
 
 [api.cdx]
-query = { endpoint = "https://webarchive.nationalarchives.gov.uk/ukgwa/cdx?url={url}", access = "online" }
+query = { endpoint = "https://webarchive.nationalarchives.gov.uk/{collection}/cdx?url={url}", access = "online" }
 
 [replay]
-rewritten = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}/{url}"
-no_toolbar = "https://webarchive.nationalarchives.gov.uk/ukgwa/nobanner/{datetime}/{url}"
-raw = "https://webarchive.nationalarchives.gov.uk/ukgwa/{datetime}id_/{url}"
+rewritten = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}/{url}"
+no_toolbar = "https://webarchive.nationalarchives.gov.uk/{collection}/nobanner/{datetime}/{url}"
+raw = "https://webarchive.nationalarchives.gov.uk/{collection}/{datetime}id_/{url}"
