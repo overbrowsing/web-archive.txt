@@ -474,6 +474,10 @@ function formatName(nameField) {
 /* ------------------- Main CLI ------------------- */
 
 (async function main() {
+  if (fs.existsSync(file) && fs.statSync(file).isDirectory()) {
+    file = path.join(file, 'web-archive.txt');
+  }
+
   UI.line();
   UI.log('info', `Checking ${file}...`);
 
