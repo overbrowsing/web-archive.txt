@@ -200,29 +200,46 @@ This registry **MAY** be used as an interim aggregator via the [GitHub Contents 
    1. Fetch a *web-archive.txt* descriptor from the registry (e.g. Internet Archive):
 
       ```bash
-      # Replace 'ia' (Internet Archive) with any web archive ID from the registry above
+      REGISTRY="https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry"
+      ARCHIVE="ia"
 
-      curl -sL https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/ia/web-archive.txt
+      curl -sL "$REGISTRY/$ARCHIVE/web-archive.txt"
       ```
 
    2. Fetch every *web-archive.txt* descriptor from the registry:
 
       ```bash
-      for ARCHIVE in $(curl -sL https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/ | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
-        curl -sL "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$ARCHIVE/web-archive.txt"
+      REGISTRY="https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry"
+      ARCHIVES=$(curl -sL "https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry" | grep -o '"name": "[^"]*"' | cut -d'"' -f4)
+
+      echo "$ARCHIVES" | while read -r ARCHIVE; do
+        curl -sL "$REGISTRY/$ARCHIVE/web-archive.txt"
       done
       ```
 
    3. Check which web archives with a CDX server API have captured a URL, and show the number of captures:
 
       ```bash
+      REGISTRY="https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry"
+      ARCHIVES=$(curl -sL "https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry" | grep -o '"name": "[^"]*"' | cut -d'"' -f4)
       URL="https://example.com"
 
-      echo -e "\nCaptures   Archive\n--------   -------"
-         for A in $(curl -sL https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry/ | grep -o '"name": "[^"]*"' | cut -d'"' -f4); do
-         D=$(curl -sL "https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry/$A/web-archive.txt"); E=$(echo "$D" | awk '/^\[api\.cdx\]/{f=1;next}/^\[/{f=0}f' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2); [ -z "$E" ] && continue
-         N=$(echo "$D" | grep -m1 '^name ='); P=$(echo "$N" | grep -o '"[^"]*"' | head -1 | tr -d '"'); EN=$(echo "$N" | grep -o 'en = "[^"]*"' | cut -d'"' -f2); ALT=$(echo "$N" | grep -o 'alt = "[^"]*"' | cut -d'"' -f2); N=${EN:-$P}; [ -n "$ALT" ] && N="$N ($ALT)"
-         C=$(curl -sL "${E/\{url\}/$URL}" | grep -c .); [ "$C" -gt 0 ] && printf "%-10s %s\n" "$C" "$N"
+      printf "%-10s %s\n" "Captures" "Archive" "--------" "-------"
+
+      echo "$ARCHIVES" | while read -r ARCHIVE; do
+        DESCRIPTOR=$(curl -sL "$REGISTRY/$ARCHIVE/web-archive.txt")
+        CDX=$(echo "$DESCRIPTOR" | awk '/^\[api\.cdx\]/{f=1;next} /^\[/{f=0} f' | grep 'access = "online"' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2)
+        [ -z "$CDX" ] && continue
+        COLLECTION=$(echo "$DESCRIPTOR" | grep -o '{ id = "[^"]*"' | head -1 | cut -d'"' -f2)
+        QUERY=${CDX//\{collection\}/"$COLLECTION"}
+        QUERY=${QUERY//\{url\}/"$URL"}
+        CAPTURES=$(curl -sL -m 30 "$QUERY" | grep -cE '^[^ ]+ [0-9]{14} ')
+        NAME_LINE=$(echo "$DESCRIPTOR" | grep -m1 '^name =')
+        NAME=$(echo "$NAME_LINE" | grep -o 'en = "[^"]*"' | cut -d'"' -f2)
+        [ -z "$NAME" ] && NAME=$(echo "$NAME_LINE" | grep -o '"[^"]*"' | head -1 | tr -d '"')
+        ALT=$(echo "$NAME_LINE" | grep -o 'alt = "[^"]*"' | cut -d'"' -f2)
+        [ -n "$ALT" ] && NAME="$NAME ($ALT)"
+        printf "%-10s %s\n" "$CAPTURES" "$NAME"
       done
       ```
 
