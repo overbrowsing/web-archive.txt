@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-10-26"
 
 [archive]
 id = "ukwa"
