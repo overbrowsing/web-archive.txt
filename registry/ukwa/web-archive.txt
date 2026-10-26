@@ -25,10 +25,10 @@ rate_limit = false
 
 [api.memento]
 timemap = { endpoint = "https://www.webarchive.org.uk/archive/timemap/link/{url}", access = "online" }
-timegate = { endpoint = "https://www.webarchive.org.uk/archive/{url}", access = "offline" } # returns 403 (checked 2026-10-26)
+timegate = { endpoint = "https://www.webarchive.org.uk/archive/{url}", access = "offline" }
 
 [api.cdx]
-query = { endpoint = "https://www.webarchive.org.uk/archive/cdx?url={url}", access = "online" } # records carry "access": "allow"/"block"; blocked captures only replay in Legal Deposit Library Reading Rooms
+query = { endpoint = "https://www.webarchive.org.uk/archive/cdx?url={url}", access = "online" }
 
 [replay]
 rewritten = "https://www.webarchive.org.uk/archive/{datetime}/{url}"
