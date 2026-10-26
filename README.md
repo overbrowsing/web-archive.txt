@@ -217,29 +217,34 @@ This registry **MAY** be used as an interim aggregator via the [GitHub Contents 
       done
       ```
 
-   3. Check which web archives with a CDX server API have captured a URL, and show the number of captures:
+   3. Check which archives that support the CDX Server API or Memento Protocol have archived a URL, and show the number of captures.
 
       ```bash
       REGISTRY="https://raw.githubusercontent.com/overbrowsing/web-archive.txt/main/registry"
       ARCHIVES=$(curl -sL "https://api.github.com/repos/overbrowsing/web-archive.txt/contents/registry" | grep -o '"name": "[^"]*"' | cut -d'"' -f4)
       URL="https://example.com"
 
-      printf "%-10s %s\n" "Captures" "Archive" "--------" "-------"
+      printf "\n%-14s %-12s %s\n%-14s %-12s %s\n" "Captures" "Source" "Archive" "--------" "------" "-------"
 
       echo "$ARCHIVES" | while read -r ARCHIVE; do
         DESCRIPTOR=$(curl -sL "$REGISTRY/$ARCHIVE/web-archive.txt")
         CDX=$(echo "$DESCRIPTOR" | awk '/^\[api\.cdx\]/{f=1;next} /^\[/{f=0} f' | grep 'access = "online"' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2)
-        [ -z "$CDX" ] && continue
+        TIMEMAP=$(echo "$DESCRIPTOR" | grep '^timemap' | grep 'access = "online"' | grep -o 'endpoint = "[^"]*"' | head -1 | cut -d'"' -f2)
+        if [ -n "$CDX" ]; then SOURCE="CDX"; ENDPOINT="$CDX"; elif [ -n "$TIMEMAP" ]; then SOURCE="TimeMap"; ENDPOINT="$TIMEMAP"; else continue; fi
         COLLECTION=$(echo "$DESCRIPTOR" | grep -o '{ id = "[^"]*"' | head -1 | cut -d'"' -f2)
-        QUERY=${CDX//\{collection\}/"$COLLECTION"}
+        QUERY=${ENDPOINT//\{collection\}/"$COLLECTION"}
         QUERY=${QUERY//\{url\}/"$URL"}
-        CAPTURES=$(curl -sL -m 30 "$QUERY" | grep -cE '^[^ ]+ [0-9]{14} ')
+        if [ "$SOURCE" = "CDX" ]; then
+          CAPTURES=$(curl -sL -m 30 "$QUERY" | grep -cE '^[^ ]+ [0-9]{14} ')
+        else
+          CAPTURES=$(curl -sL -m 30 "$QUERY" | grep -oE 'rel="[^"]*memento[^"]*"|"timestamp": ?"[0-9]{14}"' | wc -l | tr -d ' ')
+        fi
         NAME_LINE=$(echo "$DESCRIPTOR" | grep -m1 '^name =')
         NAME=$(echo "$NAME_LINE" | grep -o 'en = "[^"]*"' | cut -d'"' -f2)
         [ -z "$NAME" ] && NAME=$(echo "$NAME_LINE" | grep -o '"[^"]*"' | head -1 | tr -d '"')
         ALT=$(echo "$NAME_LINE" | grep -o 'alt = "[^"]*"' | cut -d'"' -f2)
         [ -n "$ALT" ] && NAME="$NAME ($ALT)"
-        printf "%-10s %s\n" "$CAPTURES" "$NAME"
+        printf "%-14s %-12s %s\n" "$CAPTURES" "$SOURCE" "$NAME"
       done
       ```
 
