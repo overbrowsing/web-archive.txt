@@ -24,13 +24,13 @@ domains = [ ".uk", ".scot", ".wales", ".cymru", ".london" ]
 rate_limit = false
 
 [api.memento]
-timemap = { endpoint = "https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}", access = "offline" }
-timegate = { endpoint = "https://www.webarchive.org.uk/wayback/archive/{datetime}/{url}", access = "offline" }
+timemap = { endpoint = "https://www.webarchive.org.uk/archive/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://www.webarchive.org.uk/archive/{url}", access = "offline" } # returns 403 (checked 2026-10-26)
 
 [api.cdx]
-query = { endpoint = "https://www.webarchive.org.uk/wayback/archive/cdx?url={url}", access = "offline" }
+query = { endpoint = "https://www.webarchive.org.uk/archive/cdx?url={url}", access = "online" } # records carry "access": "allow"/"block"; blocked captures only replay in Legal Deposit Library Reading Rooms
 
 [replay]
-rewritten = "https://www.webarchive.org.uk/wayback/archive/{datetime}/{url}"
-no_toolbar = "https://www.webarchive.org.uk/wayback/archive/{datetime}if_/{url}"
-raw = "https://www.webarchive.org.uk/wayback/archive/{datetime}id_/{url}"
+rewritten = "https://www.webarchive.org.uk/archive/{datetime}/{url}"
+raw = "https://www.webarchive.org.uk/archive/{datetime}id_/{url}"
+no_toolbar = "https://www.webarchive.org.uk/archive/{datetime}if_/{url}"
