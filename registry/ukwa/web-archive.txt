@@ -24,11 +24,11 @@ domains = [ ".uk", ".scot", ".wales", ".cymru", ".london" ]
 rate_limit = false
 
 [api.memento]
-timemap = { endpoint = "https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}", access = "offline" } # offline following the October 2023 cyber attack on the British Library
-timegate = { endpoint = "https://www.webarchive.org.uk/wayback/archive/{url}", access = "offline" } # offline following the October 2023 cyber attack on the British Library
+timemap = { endpoint = "https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://www.webarchive.org.uk/wayback/archive/{url}", access = "online" }
 
 [api.cdx]
-query = { endpoint = "https://www.webarchive.org.uk/wayback/archive/cdx?url={url}", access = "offline" } # offline following the October 2023 cyber attack on the British Library
+query = { endpoint = "https://www.webarchive.org.uk/wayback/archive/cdx?url={url}", access = "online" }
 
 [replay]
 rewritten = "https://www.webarchive.org.uk/wayback/archive/{datetime}/{url}"
