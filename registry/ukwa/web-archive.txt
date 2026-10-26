@@ -25,7 +25,7 @@ rate_limit = false
 
 [api.memento]
 timemap = { endpoint = "https://www.webarchive.org.uk/wayback/archive/timemap/link/{url}", access = "online" }
-timegate = { endpoint = "https://www.webarchive.org.uk/wayback/archive/{url}", access = "online" }
+timegate = { endpoint = "https://www.webarchive.org.uk/wayback/archive/{datetime}/{url}", access = "online" }
 
 [api.cdx]
 query = { endpoint = "https://www.webarchive.org.uk/wayback/archive/cdx?url={url}", access = "online" }
