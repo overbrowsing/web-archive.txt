@@ -228,7 +228,7 @@ This registry **MAY** be used as an interim aggregator via the [GitHub Contents 
 
 ## Credits
 
-Developed by [Overbrowsing](https://overbrowsing.com) at the [Institute for Design Informatics, The University of Edinburgh](https://designinformatics.org).
+Developed by [Overbrowsing](https://overbrowsing.com) at the [Institute for Design Informatics, The University of Edinburgh](https://designinformatics.org).
 
 ## Citing
 
