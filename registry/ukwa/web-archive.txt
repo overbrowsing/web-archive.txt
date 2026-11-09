@@ -33,4 +33,4 @@ query = { endpoint = "https://www.webarchive.org.uk/archive/cdx?url={url}", acce
 [replay]
 rewritten = "https://www.webarchive.org.uk/archive/{datetime}/{url}"
 raw = "https://www.webarchive.org.uk/archive/{datetime}id_/{url}"
-no_toolbar = "https://www.webarchive.org.uk/archive/{datetime}if_/{url}"
+no_toolbar = "https://www.webarchive.org.uk/archive/{datetime}mp_/{url}"
