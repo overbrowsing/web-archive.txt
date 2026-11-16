@@ -3,7 +3,7 @@ last_updated = "2026-11-16"
 
 [archive]
 id = "iplc"
-name = "Ivy Plus Libraries Confederation Web Collecting Program"
+name = "Ivy Plus Libraries Web Collecting Program"
 established = "2017"
 website = "https://archive-it.org/organizations/730"
 
