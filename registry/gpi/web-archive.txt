@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "gpi"
+name = "Greenpeace International"
+established = "2017"
+website = "https://archive-it.org/organizations/1342"
+
+[archive.organisation]
+name = [ "Greenpeace International" ]
+type = "nonprofit"
+location = [ "NL" ]
+website = "https://www.greenpeace.org/international"
+
+[archive.scope]
+crawl = [ "selective" ] # Greenpeace Archive collection of Greenpeace websites
+authority = { type = "institutional" }
+coverage = "2017-10-27/2020-10-26"
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1342/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1342/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1342/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1342/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1342/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1342/{datetime}id_/{url}"

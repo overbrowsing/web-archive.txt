@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "ucb"
+name = "University of California Berkeley"
+established = "2015"
+website = "https://archive-it.org/organizations/985"
+
+[archive.organisation]
+name = [ "University of California, Berkeley", { alt = "UC Berkeley" } ]
+type = "university"
+location = [ "US-CA" ]
+website = "https://www.lib.berkeley.edu"
+
+[archive.scope]
+crawl = [ "selective", "thematic", "event" ] # e.g. International Development Organizations, Belarus Crisis 2020-2021, At-Risk Afghanistan, North American Armenian organisations
+authority = { type = "institutional" }
+coverage = "2015-06-23/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-985/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-985/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-985/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-985/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-985/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-985/{datetime}id_/{url}"

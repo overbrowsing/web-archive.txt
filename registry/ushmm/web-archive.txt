@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "ushmm"
+name = "United States Holocaust Memorial Museum"
+established = "2019"
+website = "https://archive-it.org/organizations/1682"
+
+[archive.organisation]
+name = [ "United States Holocaust Memorial Museum", { alt = "USHMM" } ]
+type = "government" # U.S. federal institution, chartered by Congress
+location = [ "US-DC" ]
+website = "https://www.ushmm.org"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # museum websites and social media, Holocaust Encyclopedia, History Unfolded, ephemeral films
+authority = { type = "institutional" }
+coverage = "2019-12-31/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1682/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1682/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1682/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1682/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1682/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1682/{datetime}id_/{url}"

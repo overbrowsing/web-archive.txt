@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "icaew"
+name = "Institute of Chartered Accountants in England and Wales (ICAEW)"
+established = "2020"
+website = "https://archive-it.org/organizations/1613"
+
+[archive.organisation]
+name = [ "Institute of Chartered Accountants in England and Wales", { alt = "ICAEW" } ]
+type = "nonprofit" # professional accountancy body, Royal Charter
+location = [ "GB" ]
+website = "https://www.icaew.com"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # ICAEW.com, The Business Finance Guide, Finance for the Future, London Accountant, COVID-19 global recovery
+authority = { type = "institutional" }
+coverage = "2020-03-26/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1613/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1613/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1613/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1613/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1613/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1613/{datetime}id_/{url}"

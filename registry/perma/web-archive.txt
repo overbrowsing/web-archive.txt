@@ -1,0 +1,27 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "perma"
+name = "Perma.cc"
+established = "2013"
+website = "https://perma.cc"
+
+[archive.organisation]
+name = [ "Harvard Law School Library Innovation Lab", { alt = "LIL" } ]
+type = "university"
+location = [ "US-MA" ]
+website = "https://lil.law.harvard.edu"
+
+[archive.scope]
+crawl = [ "selective" ] # on-demand captures of pages cited in legal and academic scholarship, made by users at partner libraries, courts and journals
+authority = { type = "voluntary" }
+coverage = "2013-09-01/.."
+
+[api]
+documentation = "https://perma.cc/docs/developer"
+rate_limit = true # behind a Cloudflare bot challenge; automated requests may receive HTTP 403
+
+[api.memento]
+timemap = { endpoint = "https://perma.cc/timemap/link/{url}", access = "online" } # only public Perma Links are discoverable; JSON at /timemap/json/{url}
+timegate = { endpoint = "https://perma.cc/timegate/{url}", access = "online" }

@@ -1,0 +1,21 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "ga"
+name = [ "Ghostarchive", { alt = "Ghost Archive" } ]
+website = "https://ghostarchive.org"
+
+[archive.organisation]
+name = [ "Unknown" ]
+type = "commercial" # small volunteer-run independent project; operator not publicly identified
+
+[archive.scope]
+crawl = [ "selective" ] # on-demand user captures, including YouTube videos and social media posts
+authority = { type = "voluntary" }
+
+[api]
+rate_limit = true
+
+[replay]
+rewritten = "https://ghostarchive.org/archive/{datetime}/{url}" # redirects to the nearest capture's short ID (e.g. /archive/CVHxY); search at /search?term={url}

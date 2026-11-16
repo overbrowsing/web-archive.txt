@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "nypl"
+name = "New York Public Library"
+established = "2018"
+website = "https://archive-it.org/organizations/1401"
+
+[archive.organisation]
+name = [ "New York Public Library", { alt = "NYPL" } ]
+type = "nonprofit"
+location = [ "US-NY" ]
+website = "https://www.nypl.org"
+
+[archive.scope]
+crawl = [ "selective" ] # NYPL websites, blogs and code repositories
+authority = { type = "institutional" }
+coverage = "2018-03-07/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1401/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1401/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1401/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1401/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1401/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1401/{datetime}id_/{url}"

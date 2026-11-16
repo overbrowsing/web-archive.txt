@@ -1,0 +1,40 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "iza"
+name = [ "DILIMAG", { en = "Digital Literature Magazines", alt = "Digitale Literaturmagazine" } ]
+established = "2007"
+website = "https://iza-server.uibk.ac.at/dilimag/"
+email = "dilimag@uibk.ac.at"
+
+[archive.organisation]
+name = [ "Innsbrucker Zeitungsarchiv zur deutsch- und fremdsprachigen Literatur", { en = "Innsbruck Newspaper Archive", alt = "IZA" } ]
+type = "university" # part of the Department of German Studies, Universität Innsbruck
+location = [ "AT-7" ]
+website = "https://www.uibk.ac.at/iza/"
+
+[archive.scope]
+crawl = [ "selective", "periodical" ] # around 100 German-language online literary magazines and literary blogs, crawled roughly quarterly
+authority = { type = "voluntary" } # captures made with the declared consent of each website's rights holder, for open or restricted access
+coverage = "2007-01-01/.." # FWF-funded project 2007-2010, maintained since; previously hosted on Archive-It (org-550)
+collections = [
+  { id = "dilimag", name = "DILIMAG", coverage = "2007-01-01/.." },
+  { id = "autorenhomepages", name = "Autorenhomepages", coverage = "2011-01-01/2014-12-31" }, # author homepages project (FWF, 2011-2014), closed collection
+  { id = "sprachsalz", name = "Sprachsalz" }
+] # a further 'dilimag_restricted' collection requires authentication (HTTP 401)
+
+[api]
+rate_limit = false
+
+[api.memento]
+timemap = { endpoint = "https://iza-server.uibk.ac.at/pywb/{collection}/timemap/link/{url}", access = "online" }
+timegate = { endpoint = "https://iza-server.uibk.ac.at/pywb/{collection}/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://iza-server.uibk.ac.at/pywb/{collection}/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://iza-server.uibk.ac.at/pywb/{collection}/{datetime}/{url}"
+no_toolbar = "https://iza-server.uibk.ac.at/pywb/{collection}/{datetime}mp_/{url}"
+raw = "https://iza-server.uibk.ac.at/pywb/{collection}/{datetime}id_/{url}"

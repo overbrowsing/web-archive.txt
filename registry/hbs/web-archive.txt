@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "hbs"
+name = "Harvard Business School"
+established = "2013"
+website = "https://archive-it.org/organizations/719"
+
+[archive.organisation]
+name = [ "Harvard Business School", { alt = "HBS" } ]
+type = "university" # collected by Baker Library Special Collections
+location = [ "US-MA" ]
+website = "https://www.library.hbs.edu"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # HBS websites, podcasts and newsroom, plus business history collections (e.g. BankBoston, Sustainability Accounting Standards Board)
+authority = { type = "institutional" }
+coverage = "2013-07-15/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-719/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-719/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-719/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-719/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-719/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-719/{datetime}id_/{url}"

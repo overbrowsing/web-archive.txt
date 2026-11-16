@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "un"
+name = "United Nations"
+established = "2022"
+website = "https://archive-it.org/organizations/1403"
+
+[archive.organisation]
+name = [ "United Nations", { alt = "UN" } ]
+type = "government" # intergovernmental organisation, headquartered in New York
+location = [ "US-NY" ]
+website = "https://www.un.org"
+
+[archive.scope]
+crawl = [ "selective" ] # UN President of the General Assembly websites
+authority = { type = "institutional" }
+coverage = "2022-02-16/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1403/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1403/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1403/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1403/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1403/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1403/{datetime}id_/{url}"

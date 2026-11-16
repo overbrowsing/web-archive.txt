@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "iage"
+name = "Internet Archive Global Events"
+established = "2010"
+website = "https://archive-it.org/organizations/89"
+
+[archive.organisation]
+name = [ "Internet Archive", { alt = "IA" } ]
+type = "nonprofit"
+location = [ "US-CA" ]
+website = "https://archive.org"
+
+[archive.scope]
+crawl = [ "event", "thematic" ] # e.g. Ukraine Conflict, Arab Spring 2011, #BlackLivesMatter, Wikileaks 2010 document release, Cuban web domain crawl
+authority = { type = "voluntary" }
+coverage = "2010-01-20/2024-05-28"
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-89/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-89/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-89/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-89/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-89/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-89/{datetime}id_/{url}"

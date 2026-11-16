@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "uoft"
+name = "University of Toronto"
+established = "2005"
+website = "https://archive-it.org/organizations/75"
+
+[archive.organisation]
+name = [ "University of Toronto", { alt = "U of T" } ]
+type = "university"
+location = [ "CA-ON" ]
+website = "https://www.utoronto.ca"
+
+[archive.scope]
+crawl = [ "selective", "thematic", "event" ] # e.g. Canadian Government Information, Canadian Labour Unions, Canadian Political Parties, Hong Kong Politics, COVID-19 in Ontario
+authority = { type = "institutional" }
+coverage = "2005-10-04/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-75/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-75/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-75/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-75/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-75/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-75/{datetime}id_/{url}"

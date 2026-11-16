@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "ocha"
+name = "United Nations Office for the Coordination of Humanitarian Affairs"
+established = "2023"
+website = "https://archive-it.org/organizations/2675"
+
+[archive.organisation]
+name = [ "United Nations Office for the Coordination of Humanitarian Affairs", { alt = "OCHA" } ]
+type = "government" # intergovernmental organisation, part of the UN Secretariat
+location = [ "US-NY" ]
+website = "https://www.unocha.org"
+
+[archive.scope]
+crawl = [ "selective" ]
+authority = { type = "institutional" }
+coverage = "2023-04-26/2025-09-09"
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-2675/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-2675/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-2675/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-2675/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-2675/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-2675/{datetime}id_/{url}"

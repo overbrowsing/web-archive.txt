@@ -1,0 +1,18 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "kpwr"
+name = [ "역대 대통령 웹기록", { en = "Presidential Web Records" } ]
+website = "https://www.pa.go.kr/portal/webSite/webSite01.do"
+
+[archive.organisation]
+name = [ "대통령기록관", { en = "Presidential Archives of Korea" } ]
+type = "national_archive" # part of the National Archives of Korea, Ministry of the Interior and Safety
+location = [ "KR" ]
+website = "https://www.pa.go.kr"
+
+[archive.scope]
+crawl = [ "selective" ] # websites of the Office of the President and presidential administrations, transferred at the end of each term
+authority = { type = "public_record" } # Presidential Records Management Act (대통령기록물 관리에 관한 법률)
+domains = [ ".go.kr" ]

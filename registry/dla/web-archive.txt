@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "dla"
+name = [ "Literatur im Netz", { en = "Literature on the Web" } ]
+established = "2008"
+website = "https://www.dla-marbach.de/en/library/literature-on-the-web/"
+email = "literatur-im-netz@dla-marbach.de"
+
+[archive.organisation]
+name = [ "Deutsches Literaturarchiv Marbach", { en = "German Literature Archive Marbach", alt = "DLA" } ]
+type = "research_institute" # literary archive and research library run by the Deutsche Schillergesellschaft
+location = [ "DE-BW" ]
+website = "https://www.dla-marbach.de"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # German-language literary magazines, literary blogs, net literature and fan fiction
+authority = { type = "voluntary" }
+coverage = "2008-01-01/.." # 2008-2018 archive (SWBcontent, 450+ sources) searchable at literatur-im-netz.dla-marbach.de; newer captures accessed via the Kallías catalogue, mostly in the Marbach reading room

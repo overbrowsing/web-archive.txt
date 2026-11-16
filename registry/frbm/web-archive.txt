@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "frbm"
+name = "Federal Reserve Bank of Minneapolis"
+established = "2020"
+website = "https://archive-it.org/organizations/1079"
+
+[archive.organisation]
+name = [ "Federal Reserve Bank of Minneapolis", { alt = "Minneapolis Fed" } ]
+type = "government" # regional Reserve Bank of the U.S. Federal Reserve System
+location = [ "US-MN" ]
+website = "https://www.minneapolisfed.org"
+
+[archive.scope]
+crawl = [ "selective", "event" ] # Federal Reserve System websites, FRS COVID-19 response and external economic research conferences
+authority = { type = "institutional" }
+coverage = "2020-03-20/.." # Began capturing in March 2020; backfilled coverage to by the Internet Archive
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1079/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1079/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1079/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1079/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1079/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1079/{datetime}id_/{url}"
