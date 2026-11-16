@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "nalis"
+name = [ "National Library and Information System Authority", { alt = "NALIS" } ]
+established = "2021"
+website = "https://archive-it.org/organizations/2116"
+
+[archive.organisation]
+name = [ "National Library and Information System Authority", { alt = "NALIS" } ]
+type = "national_library"
+location = [ "TT" ]
+website = "https://www.nalis.gov.tt"
+
+[archive.scope]
+crawl = [ "thematic", "event" ] # Heritage Library collections: COVID-19 response, Tobago festivals, 60th anniversary of independence, Basdeo Panday memorial
+authority = { type = "institutional" }
+coverage = "2021-01-01/.." # Archive-It partner since September 2021
+domains = [ ".tt" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-2116/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-2116/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-2116/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-2116/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-2116/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-2116/{datetime}id_/{url}"

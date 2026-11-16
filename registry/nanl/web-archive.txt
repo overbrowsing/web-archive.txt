@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "nanl"
+name = [ "Nationaal Archief", { en = "National Archives of the Netherlands" } ]
+established = "2017"
+website = "https://archive-it.org/organizations/1270"
+
+[archive.organisation]
+name = [ "Nationaal Archief", { en = "National Archives of the Netherlands" } ]
+type = "national_archive"
+location = [ "NL" ]
+website = "https://www.nationaalarchief.nl"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # collections include the Nationaal Archief's own websites, its Twitter account and thematic projects (e.g. TANAP, Baltic Connections)
+authority = { type = "public_record" }
+coverage = "2017-01-01/.."
+domains = [ ".nl" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1270/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1270/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1270/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1270/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1270/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1270/{datetime}id_/{url}"

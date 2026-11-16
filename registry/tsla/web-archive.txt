@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "tsla"
+name = "Tennessee Government Web Archive"
+established = "2006"
+website = "https://archive-it.org/organizations/132"
+
+[archive.organisation]
+name = [ "Tennessee State Library and Archives", { alt = "TSLA" } ]
+type = "state_archive"
+location = [ "US-TN" ]
+website = "https://sos.tn.gov/tsla"
+
+[archive.scope]
+crawl = [ "selective", "periodical" ] # Tennessee state agency websites and born-digital state documents (annual reports, rules and regulations, serials); 120 public collections
+authority = { type = "public_record" } # collected to fulfil the Library's requirement to collect born-digital state documents
+coverage = "2006-01-01/.."
+domains = [ ".tn.gov" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-132/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-132/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-132/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-132/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-132/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-132/{datetime}id_/{url}"

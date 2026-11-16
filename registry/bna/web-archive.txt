@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "bna"
+name = [ "Biblioteca Nacional Aruba", { en = "National Library of Aruba" } ]
+established = "2021"
+website = "https://archive-it.org/organizations/2086"
+
+[archive.organisation]
+name = [ "Biblioteca Nacional Aruba", { en = "National Library of Aruba" } ]
+type = "national_library"
+location = [ "AW" ]
+website = "https://bibliotecanacional.aw"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # Aruba government and semi-government websites, news and online media, and politics (parties, candidates, elections)
+authority = { type = "institutional" }
+coverage = "2021-01-01/.."
+domains = [ ".aw" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-2086/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-2086/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-2086/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-2086/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-2086/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-2086/{datetime}id_/{url}"

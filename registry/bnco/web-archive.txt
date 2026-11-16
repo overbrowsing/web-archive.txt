@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "bnco"
+name = [ "Biblioteca Nacional de Colombia", { en = "National Library of Colombia" } ]
+established = "2012"
+website = "https://archive-it.org/organizations/631"
+
+[archive.organisation]
+name = [ "Biblioteca Nacional de Colombia", { en = "National Library of Colombia" } ]
+type = "national_library"
+location = [ "CO" ]
+website = "https://bibliotecanacional.gov.co"
+
+[archive.scope]
+crawl = [ "selective" ] # Colombian web publications and the National Library's own output
+authority = { type = "institutional" }
+coverage = "2013-01-01/.." # Archive-It partner since May 2012; collections archived since December 2013; latest capture of bibliotecanacional.gov.co seen is from 2016
+domains = [ ".co" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-631/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-631/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-631/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-631/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-631/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-631/{datetime}id_/{url}"

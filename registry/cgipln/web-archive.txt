@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "cgipln"
+name = [ "Canadian Government Information PLN Web Archive", { alt = "CGI DPN" } ]
+established = "2013"
+website = "https://archive-it.org/organizations/700"
+
+[archive.organisation]
+name = [ "Canadian Government Information Digital Preservation Network", { alt = "CGI DPN" } ]
+type = "university" # network of Canadian libraries preserving at-risk government information
+location = [ "CA" ]
+website = "https://osf.io/vpnrc/"
+
+[archive.scope]
+crawl = [ "selective", "event" ] # at-risk Canadian government information, plus event collections (federal elections, wildfires, COVID-19)
+authority = { type = "voluntary" }
+coverage = "2013-01-01/.." # Archive-It partner since February 2013
+domains = [ ".ca", ".gc.ca" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-700/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-700/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-700/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-700/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-700/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-700/{datetime}id_/{url}"

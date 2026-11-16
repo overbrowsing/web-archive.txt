@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "wh"
+name = "The U.S. White House"
+established = "2016"
+website = "https://archive-it.org/organizations/1210"
+
+[archive.organisation]
+name = "The White House"
+type = "government"
+location = [ "US" ]
+website = "https://www.whitehouse.gov"
+
+[archive.scope]
+crawl = [ "event" ] # end-of-administration crawls: The Obama White House, Let's Move and the Donald J. Trump White House
+authority = { type = "public_record" } # Presidential Records Act (44 U.S.C. Chapter 22)
+coverage = "2016-11-18/2021-01-10"
+domains = [ "whitehouse.gov", "letsmove.gov" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1210/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1210/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1210/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1210/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1210/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1210/{datetime}id_/{url}"

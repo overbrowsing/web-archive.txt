@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "qnl"
+name = "Qatar National Library"
+established = "2022"
+website = "https://archive-it.org/organizations/2530"
+
+[archive.organisation]
+name = [ "مكتبة قطر الوطنية", { en = "Qatar National Library", alt = "QNL" } ]
+type = "national_library"
+location = [ "QA" ]
+website = "https://www.qnl.qa"
+
+[archive.scope]
+crawl = [ "selective" ] # single public collection (HBKU IBIR): hbku.edu.qa
+authority = { type = "institutional" }
+coverage = "2024-03-13/2024-04-28"
+domains = [ ".qa" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-2530/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-2530/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-2530/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-2530/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-2530/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-2530/{datetime}id_/{url}"
