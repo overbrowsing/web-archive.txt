@@ -3,7 +3,7 @@ last_updated = "2026-11-16"
 
 [archive]
 id = "bsz"
-name = [ "SWBregio", { alt = "BSZ Webarchiv" } ]
+name = "SWBregio"
 established = "2010"
 website = "https://archive-it.org/organizations/1180"
 email = "zentrale@bsz-bw.de"
