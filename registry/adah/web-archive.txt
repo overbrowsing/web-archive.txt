@@ -3,7 +3,7 @@ last_updated = "2026-11-16"
 
 [archive]
 id = "adah"
-name = "Alabama State Government and Politics Web Site and Social Media Archives"
+name = "Alabama State Archives"
 established = "2005"
 website = "https://archive-it.org/organizations/62"
 
