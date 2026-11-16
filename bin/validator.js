@@ -441,13 +441,12 @@ const CHECK_HEADERS = {
   'User-Agent': 'Mozilla/5.0 (compatible; web-archive-txt; +https://github.com/overbrowsing/web-archive.txt)',
 };
 
-// {collection} is filled with a declared collection id; other placeholders with a dummy value
 const probeUrl = (url, collection) =>
   url.replace(/\{collection\}/g, collection ?? 'x').replace(/\{[^}]+\}/g, 'x');
 
 async function check(url, access, collection) {
   if (!url) return ['error', 'no endpoint URL'];
-  if (access === 'local' || access === 'offline') return ['skip', null];
+  if (access === 'local' || access === 'offline') return ['skip', access];
   if (url.includes('{collection}') && !collection)
     return ['error', 'endpoint uses {collection} but archive.scope.collections is not declared'];
 
@@ -531,7 +530,6 @@ function formatName(nameField) {
   } else {
     UI.log('info', 'Checking API endpoints...');
 
-    // Pick the collection used to test {collection} endpoints: --collection=<id>, else the first declared
     const collectionIds = (archive?.archive?.scope?.collections || []).map(c => c.id);
     let collection = collectionIds[0] || null;
     if (collectionOverride) {
@@ -552,7 +550,7 @@ function formatName(nameField) {
         status === 'ok'
           ? '└─ Status: Online'
           : status === 'skip'
-            ? '└─ Status: Local only'
+            ? `└─ Status: ${detail === 'offline' ? 'Offline' : 'Local only'}`
             : `└─ Status: Unreachable${detail ? ` (${detail})` : ''}`;
 
       UI.log(status === 'ok' ? 'ok' : status === 'skip' ? 'issue' : 'issue', msg);
