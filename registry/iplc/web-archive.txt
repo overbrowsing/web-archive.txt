@@ -1,0 +1,35 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "iplc"
+name = "Ivy Plus Libraries Confederation Web Collecting Program"
+established = "2017"
+website = "https://archive-it.org/organizations/730"
+
+[archive.organisation]
+name = [ "Ivy Plus Libraries Confederation", { alt = "IPLC" } ]
+type = "university" # consortium of 13 research libraries: Brown, Chicago, Columbia, Cornell, Dartmouth, Duke, Harvard, Johns Hopkins, MIT, Penn, Princeton, Stanford and Yale
+location = [ "US" ]
+website = "https://ivpluslibraries.org"
+
+[archive.scope]
+crawl = [ "selective", "thematic" ] # curated thematic collections of freely available, at-risk web content; most crawled twice a year
+authority = { type = "voluntary" } # website owners are notified before crawling where possible
+coverage = "2013-01-01/.."
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-730/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-730/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-730/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-730/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-730/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-730/{datetime}id_/{url}"

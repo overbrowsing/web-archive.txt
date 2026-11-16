@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "adah"
+name = "Alabama State Government and Politics Web Site and Social Media Archives"
+established = "2005"
+website = "https://archive-it.org/organizations/62"
+
+[archive.organisation]
+name = [ "Alabama Department of Archives and History", { alt = "ADAH" } ]
+type = "state_archive"
+location = [ "US-AL" ]
+website = "https://archives.alabama.gov"
+
+[archive.scope]
+crawl = [ "selective", "periodical" ] # state agency websites, agency and legislator social media, political blogs and regional organisations, captured periodically through the year
+authority = { type = "public_record", documentation = "https://archives.alabama.gov/manage/electronic/websites.aspx" }
+coverage = "2005-01-01/.."
+domains = [ ".alabama.gov" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-62/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-62/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-62/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-62/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-62/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-62/{datetime}id_/{url}"

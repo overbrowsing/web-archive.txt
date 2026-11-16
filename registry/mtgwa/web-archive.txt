@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "mtgwa"
+name = [ "MT.Gov Web Archive", { alt = "MT.GOV Connect" } ]
+established = "2007"
+website = "https://archive-it.org/organizations/139"
+
+[archive.organisation]
+name = [ "Montana State Library", { alt = "MSL" } ]
+type = "state_library"
+location = [ "US-MT" ]
+website = "https://msl.mt.gov"
+
+[archive.scope]
+crawl = [ "selective" ] # Montana state agency websites and other key mt.gov sites; companion to MSL's digitised state publications
+authority = { type = "public_record", documentation = "https://msl.mt.gov/research/state_publications/mtgov_connect/mtgov_connect_faq" } # statutory mandate to ensure permanent public access to state publications (Montana Code Annotated)
+coverage = "1996-01-01/.." # Archive-It partner since March 2007; collection includes state agency websites dating from 1996
+domains = [ ".mt.gov" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-139/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-139/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-139/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-139/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-139/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-139/{datetime}id_/{url}"

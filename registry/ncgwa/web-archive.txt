@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "ncgwa"
+name = "North Carolina State Government Web Site Archives"
+established = "2005"
+website = "https://webarchives.ncdcr.gov"
+email = "digital.info@dncr.nc.gov"
+
+[archive.organisation]
+name = "State Archives of North Carolina" # joint programme with the State Library of North Carolina
+type = "state_archive"
+location = [ "US-NC" ]
+website = "https://archives.ncdcr.gov"
+
+[archive.scope]
+crawl = [ "selective" ] # websites and limited social media of North Carolina state agencies, occupational licensing boards and commissions; WARCs downloadable at https://archive.org/details/ArchiveIt-Partner-67
+authority = { type = "public_record" }
+coverage = "1996-01-01/.." # capturing since September 2005; backfilled coverage to 1996 by the Internet Archive
+domains = [ ".nc.gov" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-67/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-67/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-67/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-67/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-67/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-67/{datetime}id_/{url}"

@@ -1,0 +1,37 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "bsz"
+name = [ "SWBregio", { alt = "BSZ Webarchiv" } ]
+established = "2010"
+website = "https://archive-it.org/organizations/1180"
+email = "zentrale@bsz-bw.de"
+
+[archive.organisation]
+name = [ "Bibliotheksservice-Zentrum Baden-Württemberg", { en = "Baden-Württemberg Library Service Center", alt = "BSZ" } ]
+type = "state_library" # state library service centre under the Baden-Württemberg Ministry of Science, Research and Arts
+location = [ "DE-BW" ]
+website = "https://www.bsz-bw.de"
+
+[archive.scope]
+crawl = [ "selective" ] # institutional websites of German cities, municipalities, districts and associated bodies (19 archives in 2022, 17 in Baden-Württemberg), archived on commission
+authority = { type = "voluntary", documentation = "https://www.bsz-bw.de/mare/lza/swbregio-faq.html" } # archived on behalf of participating municipal, regional and district archives
+coverage = "2010-01-01/.."
+domains = [ ".de" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-1180/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-1180/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-1180/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-1180/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-1180/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-1180/{datetime}id_/{url}"

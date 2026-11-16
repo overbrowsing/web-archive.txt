@@ -1,0 +1,20 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "pwa"
+name = "Palestine Web Archive"
+established = "2011"
+website = "https://nlp.ps"
+
+[archive.organisation]
+name = [ "المكتبة الوطنية الفلسطينية", { en = "National Library of Palestine", alt = "NLP" } ]
+type = "national_library"
+location = [ "PS" ]
+website = "https://nlp.ps"
+
+[archive.scope]
+crawl = [ "national_domain", "selective" ]
+authority = { type = "institutional" } # Decree-Law No. 23 of 2026 on the National Library of Palestine (12 October 2026) sets its legal mandate to preserve Palestinian national memory and intellectual output
+coverage = "2006-01-01/.." # .ps pilot crawls from 2006
+domains = [ ".ps" ]

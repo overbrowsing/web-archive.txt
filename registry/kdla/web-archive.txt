@@ -1,0 +1,36 @@
+version = "0.1"
+last_updated = "2026-11-16"
+
+[archive]
+id = "kdla"
+name = "KDLA e-Archives Website Archives"
+established = "2009"
+website = "https://archive-it.org/organizations/386"
+
+[archive.organisation]
+name = [ "Kentucky Department for Libraries and Archives", { alt = "KDLA" } ]
+type = "state_archive"
+location = [ "US-KY" ]
+website = "https://kdla.ky.gov"
+
+[archive.scope]
+crawl = [ "selective" ] # websites from all three branches of Kentucky state government: Executive Branch constitutional officers, the Legislative Research Commission and the Kentucky Court of Justice
+authority = { type = "public_record" }
+coverage = "2009-01-01/.."
+domains = [ ".ky.gov" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-386/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-386/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-386/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-386/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-386/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-386/{datetime}id_/{url}"
