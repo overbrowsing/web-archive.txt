@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-11-16"
 
 [archive]
 id = "cc"
@@ -17,6 +17,9 @@ crawl = [ "bulk" ]
 authority = { type = "voluntary" } # crawls the open web on an opt-out basis (robots.txt-compliant); not a legal deposit or public record mandate
 coverage = "2008-01-01/.."
 collections = [ # new crawls are added monthly; see full/latest list at https://index.commoncrawl.org/collinfo.json
+  { id = "CC-MAIN-2026-43", name = "October 2026 Index" },
+  { id = "CC-MAIN-2026-39", name = "September 2026 Index" },
+  { id = "CC-MAIN-2026-34", name = "August 2026 Index" },
   { id = "CC-MAIN-2026-30", name = "July 2026 Index" },
   { id = "CC-MAIN-2026-25", name = "June 2026 Index" },
   { id = "CC-MAIN-2026-21", name = "May 2026 Index" },
