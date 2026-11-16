@@ -115,11 +115,11 @@ A specification validator is provided to verify conformance of a *web-archive.tx
 
 ## Registry
 
-Few web archives yet publish a *web-archive.txt* descriptor, leaving no common means of discovering what archives exist, what they collect or how they may be queried.
+Few web archives yet publish a *web-archive.txt* descriptor, leaving no common means of discovering what web archives exist, what they collect or how they may be queried.
 
 This registry provides that interim record. Compiled from public sources and verified against live endpoints, it describes web archives worldwide in a single machine-readable form, maintained in [`registry/`](registry/).
 
-It also served as the empirical basis for the [specification](specification/v0.1/specification.md): its fields were derived from, and tested against, the practices of existing archives.
+It also served as the empirical basis for the [specification](specification/v0.1/specification.md): its fields were derived from, and tested against, the practices of existing web archives.
 
 To be listed, or to update an entry, publish a *web-archive.txt* descriptor at `/.well-known/web-archive.txt` on your domain, then submit a [pull request](https://github.com/overbrowsing/web-archive.txt/pulls).
 
