@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-11-16"
 
 [archive]
 id = "cwa"
@@ -17,4 +17,22 @@ website = "https://bibliotecanacional.gob.cl"
 [archive.scope]
 crawl = [ "selective", "event" ]
 authority = { type = "legal_deposit", documentation = "https://bcn.cl/leychile/navegar?idNorma=186049" } # legal deposit extended to the web in 2001 (Ley 19.733)
-coverage = "2013-01-01/.."
+coverage = "2008-02-22/.." # earliest captures from the 2008 Archive-It pilot; ongoing archive since 2013
+domains = [ ".cl" ]
+
+[api]
+documentation = "https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API"
+rate_limit = true
+
+# Archive-It endpoints expose the 2008 pilot captures (org-292) only
+[api.memento]
+timemap = { endpoint = "https://wayback.archive-it.org/org-292/timemap/json/{url}", access = "online" }
+timegate = { endpoint = "https://wayback.archive-it.org/org-292/{url}", access = "online" }
+
+[api.cdx]
+query = { endpoint = "https://wayback.archive-it.org/org-292/timemap/cdx?url={url}", access = "online" }
+
+[replay]
+rewritten = "https://wayback.archive-it.org/org-292/{datetime}/{url}"
+no_toolbar = "https://wayback.archive-it.org/org-292/{datetime}if_/{url}"
+raw = "https://wayback.archive-it.org/org-292/{datetime}id_/{url}"
