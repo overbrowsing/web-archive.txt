@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-09-30"
+last_updated = "2026-11-16"
 
 [archive]
 id = "unesco"
@@ -25,7 +25,7 @@ timemap = { endpoint = "https://webarchive.unesco.org/web/timemap/link/{url}", a
 timegate = { endpoint = "https://webarchive.unesco.org/web/{url}", access = "online" }
 
 [api.cdx]
-query = { endpoint = "https://webarchive.unesco.org/cdx/search/cdx?url={url}", access = "online" }
+query = { endpoint = "https://webarchive.unesco.org/web/timemap/cdx?url={url}", access = "online" }
 
 [replay]
 rewritten = "https://webarchive.unesco.org/web/{datetime}/{url}"
