@@ -16,7 +16,7 @@ website = "https://osf.io/vpnrc/"
 [archive.scope]
 crawl = [ "selective", "event" ] # at-risk Canadian government information, plus event collections (federal elections, wildfires, COVID-19)
 authority = { type = "voluntary" }
-coverage = "2013-01-01/.." # Archive-It partner since February 2013
+coverage = "2013-01-01/.."
 domains = [ ".ca", ".gc.ca" ]
 
 [api]
