@@ -3,13 +3,13 @@ last_updated = "2026-11-16"
 
 [archive]
 id = "ncgwa"
-name = "North Carolina State Government Web Site Archives"
+name = [ "North Carolina State Government Website and Social Media Archives", { alt = "NC Web Archives" } ]
 established = "2005"
 website = "https://webarchives.ncdcr.gov"
 email = "digital.info@dncr.nc.gov"
 
 [archive.organisation]
-name = "State Archives of North Carolina" # joint programme with the State Library of North Carolina
+name = "State Archives of North Carolina / State Library of North Carolina"
 type = "state_archive"
 location = [ "US-NC" ]
 website = "https://archives.ncdcr.gov"
