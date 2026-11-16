@@ -1,5 +1,5 @@
 version = "0.1"
-last_updated = "2026-08-17"
+last_updated = "2026-11-16"
 
 [archive]
 id = "yudl"
@@ -22,7 +22,7 @@ rate_limit = false
 
 [api.memento]
 timemap = { endpoint = "https://wayback.library.yorku.ca/all/timemap/json/{url}", access = "online" }
-timegate = { endpoint = "https://digital.library.yorku.ca/wayback{url}", access = "online" }
+timegate = { endpoint = "https://wayback.library.yorku.ca/all/{url}", access = "online" }
 
 [api.cdx]
 query = { endpoint = "https://wayback.library.yorku.ca/all/cdx?url={url}", access = "online" }
