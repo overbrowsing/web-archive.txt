@@ -3,9 +3,9 @@ last_updated = "2026-09-30"
 
 [archive]
 id = "bncf"
-name = [ "BNCF Web Archive", { alt = "BNCF" } ]
+name = [ "Biblioteca Nazionale Centrale di Firenze Web Archive", { alt = "BNCF Web Archive" } ]
 established = "2018"
-website = "https://archive-it.org/home/BNCF" # hosted on Archive-It (organisation 1284)
+website = "https://archive-it.org/home/BNCF"
 email = "bnc-fi.magazzinidigitali@cultura.gov.it"
 
 [archive.organisation]
